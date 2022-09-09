@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Shared\BlazorWA.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\ServiceHandlers\" />
-  </ItemGroup>
-
 </Project>

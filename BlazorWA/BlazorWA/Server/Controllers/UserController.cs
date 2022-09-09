@@ -16,6 +16,7 @@ namespace BlazorWA.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IConfiguration config;

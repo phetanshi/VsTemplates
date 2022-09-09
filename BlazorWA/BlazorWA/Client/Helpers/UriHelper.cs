@@ -1,0 +1,15 @@
+﻿namespace BlazorWA.UI.Helpers
+{
+    public class UriHelper
+    {
+        #region ApiUri
+        public const string Login = "Api:Login";
+        public const string Logout = "Api:Logout";
+        public const string IsTokenExpired = "Api:IsTokenExpired";
+        public const string LoginUserDetails = "Api:LoginUserDetails";
+
+        public const string SampleData = "Api:SampleData";
+        public const string SampleUsers = "Api:SampleUsers";
+        #endregion
+    }
+}
