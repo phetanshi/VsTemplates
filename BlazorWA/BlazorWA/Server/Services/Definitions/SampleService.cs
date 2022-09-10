@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
 using BlazorWA.ViewModels.Models;
 

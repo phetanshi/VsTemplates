@@ -1,7 +1,7 @@
 ﻿using BlazorWA.Domain;
 using BlazorWA.ViewModels.Models;
 
-namespace BlazorWA.Api.Services
+namespace BlazorWA.Api.Services.Interfaces
 {
     public interface ISampleService
     {

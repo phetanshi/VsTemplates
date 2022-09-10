@@ -24,17 +24,15 @@ namespace BlazorWA.UI
             builder.Services.AddHttpClient<ISampleServiceHandler, SampleServiceHandler>("SampleServiceClient", client =>
             {
                 client.BaseAddress = baseAddress;
-            });
+            }).AddHttpMessageHandler<AppAutherizationHandler>();
 
             builder.Services.AddHttpClient<IUserServiceHandler, UserServiceHandler>("UserServiceClient", client =>
             {
                 client.BaseAddress = baseAddress;
-            });
+            }).AddHttpMessageHandler<AppAutherizationHandler>();
 
-            builder.Services.AddHttpClient<AuthenticationStateProvider, AppAuthenticationStateProvider>("AuthenticationStateProviderClient", client =>
-            {
-                client.BaseAddress = baseAddress;
-            });
+            builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
+            builder.Services.AddTransient<AppAutherizationHandler>();
 
             builder.Services.AddScoped<IAccessTokenService, AppAccessTokenService>();
 

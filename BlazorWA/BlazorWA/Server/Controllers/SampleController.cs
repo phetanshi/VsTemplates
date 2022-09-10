@@ -1,4 +1,4 @@
-﻿using BlazorWA.Api.Services;
+﻿using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
 using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

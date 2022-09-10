@@ -14,10 +14,10 @@ using BlazorWA.Api;
 using BlazorWA.Data;
 using BlazorWA.Data.Definitions;
 using BlazorWA.Data.Database;
-using BlazorWA.Api.Services;
 using BlazorWA.Api.AutoMapperProfiles;
 using BlazorWA.Api.Services.Definitions;
 using Microsoft.OpenApi.Models;
+using BlazorWA.Api.Services.Interfaces;
 
 namespace BlazorWA
 {
@@ -45,6 +45,7 @@ namespace BlazorWA
             });
 
             builder.Services.AddScoped<LogAttribute>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ISampleService, SampleService>();
             builder.Services.AddScoped<ISampleRepository, SampleRepository>();
 

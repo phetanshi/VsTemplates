@@ -26,7 +26,8 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
             UserVM user = null;
             if (token != null)
             {
-                if (await IsTokenExpiredAsync(token))
+                bool isExpired = await IsTokenExpiredAsync(token);
+                if (isExpired)
                     return null;
                 user = await Post<UserVM>(token, UriHelper.LoginUserDetails);
             }

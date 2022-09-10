@@ -11,6 +11,7 @@ using BlazorWA.ViewModels.Auth;
 using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BlazorWA.Api.Controllers
 {
@@ -42,6 +43,8 @@ namespace BlazorWA.Api.Controllers
 
             if (HttpContext.User.Identity.IsAuthenticated)
                 userVm.UserId = HttpContext.User.Identity.Name;
+            else
+                userVm.UserId = WindowsIdentity.GetCurrent().Name;
 
             if (!string.IsNullOrWhiteSpace(userVm.UserId))
             {
@@ -94,8 +97,6 @@ namespace BlazorWA.Api.Controllers
                 {
                     UserVM user = new UserVM();
                     user.UserId = userId;
-                    user.FirstName = "Hetanshi";
-                    user.LastName = "Pottepalem";
                     return user;
                 }
             }
@@ -111,6 +112,7 @@ namespace BlazorWA.Api.Controllers
             return Ok();
         }
 
+        [NonAction]
         private string GenerateJwtToken(UserVM userVm)
         {
             var claimUserId = new Claim(ClaimTypes.NameIdentifier, userVm.UserId);
@@ -123,7 +125,7 @@ namespace BlazorWA.Api.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claimsIdentity,
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secureKeyBytes), SecurityAlgorithms.HmacSha256Signature)
             };
 

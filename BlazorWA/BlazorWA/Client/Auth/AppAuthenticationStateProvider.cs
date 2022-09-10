@@ -14,30 +14,27 @@ namespace BlazorWA.UI.Auth
     public class AppAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly IUserServiceHandler userServiceHandler;
-        private readonly HttpClient http;
         private readonly IAccessTokenService accessTokenService;
         private readonly IConfiguration config;
 
-        public AppAuthenticationStateProvider(IUserServiceHandler userServiceHandler, HttpClient http, IAccessTokenService accessTokenService, IConfiguration config)
+        public AppAuthenticationStateProvider(IUserServiceHandler userServiceHandler, IAccessTokenService accessTokenService, IConfiguration config)
         {
             this.userServiceHandler = userServiceHandler;
-            this.http = http;
             this.accessTokenService = accessTokenService;
             this.config = config;
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             AuthenticationResponse authNResponse = await userServiceHandler.LoginAsync();
+            await accessTokenService.SetAccessTokenAsync(AppMessages.TokenKey, authNResponse.Token);
             var loginUser = await userServiceHandler.GetLoginUserDetailsAsync(authNResponse.Token);
             if (loginUser != null && !string.IsNullOrWhiteSpace(loginUser.UserId))
             {
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, loginUser.UserId),
-                    new Claim(ClaimTypes.Email, loginUser.Email ?? ""),
-                    new Claim(AppClaimTypes.FirstName, loginUser.FirstName ?? ""),
-                    new Claim(AppClaimTypes.LastName, loginUser.LastName ?? "")
-                };
+                List<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, loginUser.UserId));
+                claims.Add(new Claim(ClaimTypes.Email, loginUser.Email ?? ""));
+                claims.Add(new Claim(AppClaimTypes.FirstName, loginUser.FirstName ?? ""));
+                claims.Add(new Claim(AppClaimTypes.LastName, loginUser.LastName ?? ""));
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimPrincipal = new ClaimsPrincipal(claimsIdentity);

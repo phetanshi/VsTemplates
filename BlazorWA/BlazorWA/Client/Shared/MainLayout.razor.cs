@@ -11,7 +11,6 @@ namespace BlazorWA.UI.Shared
         public Task<AuthenticationState> AuthenticationState { get; set; }
 
         private string userName = "";
-
         protected override async Task OnInitializedAsync()
         {
             var authNState = await AuthenticationState;

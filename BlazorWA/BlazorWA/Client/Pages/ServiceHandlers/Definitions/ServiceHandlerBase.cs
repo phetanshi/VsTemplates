@@ -43,20 +43,13 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         }
         protected async Task<T> ReadApiResponseAsync<T>(HttpResponseMessage httpResponse)
         {
-            T Obj = default;
             if (httpResponse.IsSuccessStatusCode && httpResponse.Content != null)
             {
-                if (IsPrimitiveType(typeof(T)))
-                {
-                    var res = await httpResponse.Content.ReadAsStreamAsync();
-                    Obj = (T)Convert.ChangeType(res, typeof(T));
-                }
-                else
-                {
-                    Obj = await httpResponse.Content.ReadFromJsonAsync<T>();
-                }
+                T Obj = await httpResponse.Content.ReadFromJsonAsync<T>();
+
+                return Obj;
             }
-            return Obj;
+            return default(T);
         }
 
         protected async Task Get(string uriConfigKey)
