@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorWA.UI.Components\BlazorWA.UI.Components.csproj" />
     <ProjectReference Include="..\Shared\BlazorWA.ViewModels.csproj" />
   </ItemGroup>
 

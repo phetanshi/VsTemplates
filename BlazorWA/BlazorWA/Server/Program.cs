@@ -10,7 +10,6 @@ using BlazorWA.Api.Auth;
 
 
 using BlazorWA.Logging;
-using BlazorWA.Api;
 using BlazorWA.Data;
 using BlazorWA.Data.Definitions;
 using BlazorWA.Data.Database;
@@ -19,7 +18,7 @@ using BlazorWA.Api.Services.Definitions;
 using Microsoft.OpenApi.Models;
 using BlazorWA.Api.Services.Interfaces;
 
-namespace BlazorWA
+namespace BlazorWA.Api
 {
     public class Program
     {
