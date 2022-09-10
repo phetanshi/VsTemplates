@@ -47,8 +47,11 @@ namespace BlazorWA.Api.Services.Definitions
                 {
                     UserVM user = new UserVM();
                     user.UserId = userId;
-                    user.FirstName = "Hetanshi";
-                    user.LastName = "Pottepalem";
+
+                    //Uncomment below to add few more claims
+                    //user.FirstName = "<first name>";
+                    //user.LastName = "<last name>";
+
                     return await Task.FromResult(user);
                 }
             }
