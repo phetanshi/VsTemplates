@@ -1,0 +1,15 @@
+﻿<div class="top-row px-4 bg-primary">
+    @if (!string.IsNullOrWhiteSpace(UserName))
+    {
+        <span class="text-primary">Hello @UserName!</span>
+    }
+    else
+    {
+        <span class="text-primary">Not Authenticated</span>
+    }
+
+</div>
+
+@code {
+    [Parameter] public string UserName { get; set; }
+}

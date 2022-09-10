@@ -25,6 +25,12 @@ namespace BlazorWA.UI
             {
                 client.BaseAddress = baseAddress;
             });
+
+            builder.Services.AddHttpClient<IUserServiceHandler, UserServiceHandler>("UserServiceClient", client =>
+            {
+                client.BaseAddress = baseAddress;
+            });
+
             builder.Services.AddHttpClient<AuthenticationStateProvider, AppAuthenticationStateProvider>("AuthenticationStateProviderClient", client =>
             {
                 client.BaseAddress = baseAddress;

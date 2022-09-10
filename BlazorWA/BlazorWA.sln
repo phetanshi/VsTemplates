@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.UI", "BlazorWA\Cli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.ViewModels", "BlazorWA\Shared\BlazorWA.ViewModels.csproj", "{CAEF1DD5-F8D0-4F41-9056-C24EE81D0CB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWA.Data", "BlazorWA.Data\BlazorWA.Data.csproj", "{A0DE1284-FEC3-4E5E-A545-DFEAB91E003B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.Data", "BlazorWA.Data\BlazorWA.Data.csproj", "{A0DE1284-FEC3-4E5E-A545-DFEAB91E003B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWA.Domain", "BlazorWA.Domain\BlazorWA.Domain.csproj", "{3F163414-4D05-4551-888E-5C584890F7FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.Domain", "BlazorWA.Domain\BlazorWA.Domain.csproj", "{3F163414-4D05-4551-888E-5C584890F7FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWA.Logging", "BlazorWA.Logging\BlazorWA.Logging.csproj", "{AFD27877-2555-4677-A105-838590371C0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.Logging", "BlazorWA.Logging\BlazorWA.Logging.csproj", "{AFD27877-2555-4677-A105-838590371C0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWA.UnitTest", "BlazorWA.UnitTest\BlazorWA.UnitTest.csproj", "{3F47295E-E6FB-4BCB-AF31-1C9852CB843D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWA.UnitTest", "BlazorWA.UnitTest\BlazorWA.UnitTest.csproj", "{3F47295E-E6FB-4BCB-AF31-1C9852CB843D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

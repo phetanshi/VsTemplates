@@ -66,7 +66,6 @@ namespace BlazorWA.Api.Controllers
                 logger.LogError(ex.Message, ex);
                 return false;
             }
-
             return false;
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
 {
@@ -84,6 +85,17 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         {
             var uri = GetServiceUri(uriConfigKey);
             var response = await http.PostAsync(uri, null);
+            TResult result = await ReadApiResponseAsync<TResult>(response);
+            return result;
+        }
+        protected async Task<TResult> Post<TResult>(string stringContent, string uriConfigKey)
+        {
+            var uri = GetServiceUri(uriConfigKey);
+            var requestMsg = new HttpRequestMessage(HttpMethod.Post, uri);
+            var content = JsonSerializer.Serialize(stringContent);
+            requestMsg.Content = new StringContent(content);
+            requestMsg.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await http.SendAsync(requestMsg);
             TResult result = await ReadApiResponseAsync<TResult>(response);
             return result;
         }
