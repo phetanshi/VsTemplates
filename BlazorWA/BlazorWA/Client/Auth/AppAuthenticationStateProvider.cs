@@ -27,7 +27,7 @@ namespace BlazorWA.UI.Auth
         {
             AuthenticationResponse authNResponse = await userServiceHandler.LoginAsync();
             await accessTokenService.SetAccessTokenAsync(AppMessages.TokenKey, authNResponse.Token);
-            var loginUser = await userServiceHandler.GetLoginUserDetailsAsync(authNResponse.Token);
+            var loginUser = await userServiceHandler.GetLoginUserDetailsAsync();
             if (loginUser != null && !string.IsNullOrWhiteSpace(loginUser.UserId))
             {
                 List<Claim> claims = new List<Claim>();

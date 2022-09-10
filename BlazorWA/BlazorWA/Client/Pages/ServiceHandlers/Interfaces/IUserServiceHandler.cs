@@ -7,8 +7,6 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Interfaces
     {
         Task<AuthenticationResponse> LoginAsync();
         Task<bool> IsTokenExpiredAsync();
-        Task<bool> IsTokenExpiredAsync(string token);
         Task<UserVM> GetLoginUserDetailsAsync();
-        Task<UserVM> GetLoginUserDetailsAsync(string token);
     }
 }

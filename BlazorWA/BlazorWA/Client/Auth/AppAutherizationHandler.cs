@@ -22,8 +22,9 @@ namespace BlazorWA.UI.Auth
             var uri = request.RequestUri?.AbsoluteUri;
 
             if (token != null && !uri.Contains(configuration[UriHelper.Login]))
+            {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
+            }
             return await base.SendAsync(request, cancellationToken);
         }
     }

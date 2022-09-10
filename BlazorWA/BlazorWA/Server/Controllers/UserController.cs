@@ -12,25 +12,25 @@ using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BlazorWA.Api.Services.Interfaces;
+using Newtonsoft.Json.Linq;
 
 namespace BlazorWA.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IConfiguration config;
+        private readonly IUserService userService;
         private readonly ILogger<UserController> logger;
-        private readonly byte[]? secureKeyBytes;
+        
 
-        public UserController(IConfiguration config, ILogger<UserController> logger)
+        public UserController(IConfiguration config, IUserService userService, ILogger<UserController> logger)
         {
             this.config = config;
+            this.userService = userService;
             this.logger = logger;
-
-            string secureKey = config["Authentication:JWTSettings:SecretKey"];
-            secureKeyBytes = Encoding.ASCII.GetBytes(secureKey);
         }
 
         [HttpPost]
@@ -38,69 +38,32 @@ namespace BlazorWA.Api.Controllers
         [Authorize(AuthenticationSchemes = NegotiateDefaults.AuthenticationScheme)]
         public async Task<ActionResult<AuthenticationResponse>> Login()
         {
-            string token = string.Empty;
-            UserVM userVm = new UserVM();
-
-            if (HttpContext.User.Identity.IsAuthenticated)
-                userVm.UserId = HttpContext.User.Identity.Name;
-            else
-                userVm.UserId = WindowsIdentity.GetCurrent().Name;
-
-            if (!string.IsNullOrWhiteSpace(userVm.UserId))
-            {
-                token = GenerateJwtToken(userVm);
-            }
-            return await Task.FromResult(new AuthenticationResponse() { Token = token });
+            return await userService.Login(HttpContext);
         }
 
         [HttpPost]
         [Route("istokenexpired")]
-        public async Task<ActionResult<bool>> IsTokenExpired([FromBody] string jwtToken)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<bool>> IsTokenExpired()
         {
-            try
+            if(HttpContext.User.Identity.IsAuthenticated)
             {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var token = tokenHandler.ReadJwtToken(jwtToken);
-                var hasExpired = token.ValidTo < DateTime.UtcNow;
-                return hasExpired;
+                string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+                return await userService.IsTokenExpired(token);
             }
-            catch (SecurityTokenException ex)
-            {
-                logger.LogError(ex.Message, ex);
-                return false;
-            }
-            return false;
+            return await Task.FromResult(true);
         }
 
         [HttpPost]
         [Route("getuserbyjwt")]
-        public async Task<ActionResult<UserVM>> GetUserByJwt([FromBody] string jwtToken)
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<UserVM>> GetUserByToken()
         {
-            var tokenValidationParameters = new TokenValidationParameters
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(secureKeyBytes),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            SecurityToken securityToken;
-            var principle = tokenHandler.ValidateToken(jwtToken, tokenValidationParameters, out securityToken);
-            var jwtSecurityToken = (JwtSecurityToken)securityToken;
-
-            if (jwtSecurityToken != null && jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var userId = principle.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (userId != null)
-                {
-                    UserVM user = new UserVM();
-                    user.UserId = userId;
-                    return user;
-                }
+                string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+                return await userService.GetUserByToken(token);
             }
-
             return null;
         }
 
@@ -110,29 +73,6 @@ namespace BlazorWA.Api.Controllers
         {
             await HttpContext.SignOutAsync();
             return Ok();
-        }
-
-        [NonAction]
-        private string GenerateJwtToken(UserVM userVm)
-        {
-            var claimUserId = new Claim(ClaimTypes.NameIdentifier, userVm.UserId);
-            var claimEmail = new Claim(ClaimTypes.Email, userVm.Email ?? "");
-            var claimFirstName = new Claim(AppClaimTypes.FirstName, userVm.FirstName ?? "");
-            var claimLastName = new Claim(AppClaimTypes.LastName, userVm.LastName ?? "");
-
-            var claimsIdentity = new ClaimsIdentity(new[] { claimUserId, claimEmail, claimFirstName, claimLastName }, "JwtServerAuth");
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = claimsIdentity,
-                Expires = DateTime.UtcNow.AddMinutes(60),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secureKeyBytes), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenStr = tokenHandler.WriteToken(token);
-            return tokenStr;
         }
     }
 }

@@ -17,40 +17,22 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
 
         public async Task<UserVM> GetLoginUserDetailsAsync()
         {
-            string token = await accessTokenService.GetAccessTokenAsync(AppMessages.TokenKey);
-            return await GetLoginUserDetailsAsync(token);
-        }
+            bool isExpired = await IsTokenExpiredAsync();
 
-        public async Task<UserVM> GetLoginUserDetailsAsync(string token)
-        {
-            UserVM user = null;
-            if (token != null)
-            {
-                bool isExpired = await IsTokenExpiredAsync(token);
-                if (isExpired)
-                    return null;
-                user = await Post<UserVM>(token, UriHelper.LoginUserDetails);
-            }
-            return user;
+            if (isExpired)
+                return null;
+
+            return await Post<UserVM>(UriHelper.LoginUserDetails);
         }
 
         public async Task<bool> IsTokenExpiredAsync()
         {
-            string token = await accessTokenService.GetAccessTokenAsync(AppMessages.TokenKey);
-            return await IsTokenExpiredAsync(token);
-        }
-
-        public async Task<bool> IsTokenExpiredAsync(string token)
-        {
-            if (token != null)
-                return await Post<bool>(token, UriHelper.IsTokenExpired);
-            return true;
+            return await Post<bool>(UriHelper.IsTokenExpired);
         }
 
         public async Task<AuthenticationResponse> LoginAsync()
         {
-            var authNResponse = await Post<AuthenticationResponse>(UriHelper.Login);
-            return authNResponse;
+            return await Post<AuthenticationResponse>(UriHelper.Login);
         }
     }
 }
