@@ -1,5 +1,5 @@
 ﻿using BlazorWA.UI.Auth.Services;
-using BlazorWA.UI.Helpers;
+using Helpers = BlazorWA.UI.Helpers;
 using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
 using BlazorWA.ViewModels.Auth;
 using BlazorWA.ViewModels.Models;
@@ -22,17 +22,17 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
             if (isExpired)
                 return null;
 
-            return await Post<UserVM>(UriHelper.LoginUserDetails);
+            return await Post<UserVM>(Helpers.UriHelper.LoginUserDetails);
         }
 
         public async Task<bool> IsTokenExpiredAsync()
         {
-            return await Post<bool>(UriHelper.IsTokenExpired);
+            return await Post<bool>(Helpers.UriHelper.IsTokenExpired);
         }
 
         public async Task<AuthenticationResponse> LoginAsync()
         {
-            return await Post<AuthenticationResponse>(UriHelper.Login);
+            return await Post<AuthenticationResponse>(Helpers.UriHelper.Login);
         }
     }
 }
