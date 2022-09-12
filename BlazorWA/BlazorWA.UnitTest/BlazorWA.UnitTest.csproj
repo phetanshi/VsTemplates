@@ -40,7 +40,6 @@
   <ItemGroup>
     <Folder Include="Api\" />
     <Folder Include="Data\" />
-    <Folder Include="UI.Components\" />
   </ItemGroup>
 
 </Project>
