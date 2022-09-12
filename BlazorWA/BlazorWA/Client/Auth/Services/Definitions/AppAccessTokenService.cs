@@ -17,7 +17,7 @@ namespace BlazorWA.UI.Auth.Services.Definitions
 
         public async Task RemoveAccessTokenAsync(string tokenName)
         {
-            await jSRuntime.InvokeAsync<string>("localStorage.removeItem", tokenName);
+            await jSRuntime.InvokeVoidAsync("localStorage.removeItem", tokenName);
         }
 
         public async Task SetAccessTokenAsync(string tokenName, string tokenValue)

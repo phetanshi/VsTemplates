@@ -37,4 +37,10 @@
     <ProjectReference Include="..\BlazorWA\Shared\BlazorWA.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="Data\" />
+    <Folder Include="UI.Components\" />
+  </ItemGroup>
+
 </Project>
