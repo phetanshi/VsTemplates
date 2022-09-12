@@ -1,5 +1,5 @@
 ﻿using BlazorWA.UI.Auth.Services;
-using BlazorWA.UI.Helpers;
+using Helper = BlazorWA.UI.Helpers;
 using System.Net.Http.Headers;
 
 namespace BlazorWA.UI.Auth
@@ -17,11 +17,11 @@ namespace BlazorWA.UI.Auth
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var token = await accessTokenService.GetAccessTokenAsync(AppMessages.TokenKey);
+            var token = await accessTokenService.GetAccessTokenAsync(Helper.AppMessages.TokenKey);
 
             var uri = request.RequestUri?.AbsoluteUri;
 
-            if (token != null && !uri.Contains(configuration[UriHelper.Login]))
+            if (token != null && !uri.Contains(configuration[Helper.UriHelper.Login]))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }

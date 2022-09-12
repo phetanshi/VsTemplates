@@ -15,13 +15,11 @@ namespace BlazorWA.UI.Auth
     {
         private readonly IUserServiceHandler userServiceHandler;
         private readonly IAccessTokenService accessTokenService;
-        private readonly IConfiguration config;
 
-        public AppAuthenticationStateProvider(IUserServiceHandler userServiceHandler, IAccessTokenService accessTokenService, IConfiguration config)
+        public AppAuthenticationStateProvider(IUserServiceHandler userServiceHandler, IAccessTokenService accessTokenService)
         {
             this.userServiceHandler = userServiceHandler;
             this.accessTokenService = accessTokenService;
-            this.config = config;
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {

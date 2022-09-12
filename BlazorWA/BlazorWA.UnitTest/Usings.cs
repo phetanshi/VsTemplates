@@ -20,3 +20,6 @@ global using BlazorWA.UI.Shared;
 global using BlazorWA.UI.Pages.ServiceHandlers;
 global using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
 global using BlazorWA.UI.Pages.ServiceHandlers.Definitions;
+
+global using BlazorWA.ViewModels.Auth;
+global using BlazorWA.ViewModels.Models;

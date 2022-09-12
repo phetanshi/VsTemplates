@@ -1,11 +1,4 @@
-﻿using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazorWA.UnitTest.UI.Auth
+﻿namespace BlazorWA.UnitTest.UI.Auth
 {
     public class AppAccessTokenServiceTests
     {
