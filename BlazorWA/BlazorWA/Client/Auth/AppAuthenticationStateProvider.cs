@@ -24,29 +24,31 @@ namespace BlazorWA.UI.Auth
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             AuthenticationResponse authNResponse = await userServiceHandler.LoginAsync();
-            await accessTokenService.SetAccessTokenAsync(AppMessages.TokenKey, authNResponse.Token);
-            var loginUser = await userServiceHandler.GetLoginUserDetailsAsync();
-            if (loginUser != null && !string.IsNullOrWhiteSpace(loginUser.UserId))
+            
+            if (authNResponse != null && !string.IsNullOrEmpty(authNResponse.Token))
             {
-                List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, loginUser.UserId));
-                claims.Add(new Claim(ClaimTypes.Email, loginUser.Email ?? ""));
-                claims.Add(new Claim(AppClaimTypes.FirstName, loginUser.FirstName ?? ""));
-                claims.Add(new Claim(AppClaimTypes.LastName, loginUser.LastName ?? ""));
+                await accessTokenService.SetAccessTokenAsync(AppMessages.TokenKey, authNResponse.Token);
+                var loginUser = await userServiceHandler.GetLoginUserDetailsAsync();
+                
+                if (loginUser != null && !string.IsNullOrWhiteSpace(loginUser.UserId))
+                {
+                    List<Claim> claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, loginUser.UserId));
+                    claims.Add(new Claim(ClaimTypes.Email, loginUser.Email ?? ""));
+                    claims.Add(new Claim(AppClaimTypes.FirstName, loginUser.FirstName ?? ""));
+                    claims.Add(new Claim(AppClaimTypes.LastName, loginUser.LastName ?? ""));
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
-                var authnticationState = new AuthenticationState(claimPrincipal);
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    var authnticationState = new AuthenticationState(claimPrincipal);
 
-                return authnticationState;
+                    return authnticationState;
+                }
             }
-            else
-            {
-                var claimsIdentity = new ClaimsIdentity();
-                var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
-                var authnticationState = new AuthenticationState(claimPrincipal);
-                return authnticationState;
-            }
+            var claimsIdentityDefault = new ClaimsIdentity();
+            var claimPrincipalDefault = new ClaimsPrincipal(claimsIdentityDefault);
+            var authnticationStateDefault = new AuthenticationState(claimPrincipalDefault);
+            return authnticationStateDefault;
         }
     }
 }
