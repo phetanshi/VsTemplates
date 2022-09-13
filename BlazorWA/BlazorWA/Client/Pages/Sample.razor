@@ -39,13 +39,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            users = await sampleServiceHandler.GetUsersAsync();
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
+        users = await sampleServiceHandler.GetUsersAsync();
     }
 }
