@@ -20,14 +20,9 @@ namespace BlazorWA.Api.Services.Definitions
         public async Task<List<UserVM>> GetUsers()
         {
             List<UserVM> users = new List<UserVM>();
-            var empList =  await sampleRepository.GetEmployees();
+            var empList =  await sampleRepository.GetEmployeesAsync();
             mapper.Map(empList, users);
             return users;
-        }
-
-        public async Task<string> Greet()
-        {
-            return await sampleRepository.Greet();
         }
     }
 }

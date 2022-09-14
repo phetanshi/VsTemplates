@@ -9,7 +9,6 @@ namespace BlazorWA.Data
 {
     public interface ISampleRepository
     {
-        Task<string> Greet();
-        Task<List<Employee>> GetEmployees();
+        Task<List<Employee>> GetEmployeesAsync();
     }
 }

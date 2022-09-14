@@ -19,14 +19,6 @@ namespace BlazorWA.Api.Controllers
         }
 
         [HttpGet]
-        [Route("sampledata")]
-        public async Task<ActionResult> GetSampleData()
-        {
-            var str = await _sampleService.Greet();
-            return Ok(str);
-        }
-
-        [HttpGet]
         [Route("users")]
         [Authorize]
         public async Task<ActionResult<List<UserVM>>> GetUsers()

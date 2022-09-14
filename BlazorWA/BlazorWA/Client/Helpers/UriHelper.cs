@@ -8,7 +8,6 @@
         public const string IsTokenExpired = "Api:IsTokenExpired";
         public const string LoginUserDetails = "Api:LoginUserDetails";
 
-        public const string SampleData = "Api:SampleData";
         public const string SampleUsers = "Api:SampleUsers";
         #endregion
     }

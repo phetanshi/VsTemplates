@@ -26,3 +26,6 @@ global using BlazorWA.UI.Pages.ServiceHandlers.Definitions;
 
 global using BlazorWA.ViewModels.Auth;
 global using BlazorWA.ViewModels.Models;
+
+global using BlazorWA.Domain;
+global using BlazorWA.Data.Database;

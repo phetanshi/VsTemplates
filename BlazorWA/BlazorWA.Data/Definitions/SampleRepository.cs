@@ -17,14 +17,9 @@ namespace BlazorWA.Data.Definitions
         {
             this.dbContext = dbContext;
         }
-        public async Task<List<Employee>> GetEmployees()
+        public async Task<List<Employee>> GetEmployeesAsync()
         {
             return await dbContext.Employees.ToListAsync();
-        }
-
-        public async Task<string> Greet()
-        {
-            return await Task.FromResult("Hello State street from AAI team!");
         }
     }
 }
