@@ -1,4 +1,4 @@
-﻿namespace BlazorWA.UnitTest.UI.ServiceHandlers
+﻿namespace $safeprojectname$.UI.ServiceHandlers
 {
     public class ServiceHandlerBaseTests : ServiceHandlerBase
     {

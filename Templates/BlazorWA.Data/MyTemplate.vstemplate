@@ -1,0 +1,28 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>BlazorWA.Data</Name>
+    <Description>Class Library for repository layer</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>BlazorWA.Data</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.Data.csproj" File="BlazorWA.Data.csproj" ReplaceParameters="true">
+      <Folder Name="Database" TargetFolderName="Database">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppDbContext.cs">AppDbContext.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Definitions" TargetFolderName="Definitions">
+        <ProjectItem ReplaceParameters="true" TargetFileName="SampleRepository.cs">SampleRepository.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ISampleRepository.cs">ISampleRepository.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

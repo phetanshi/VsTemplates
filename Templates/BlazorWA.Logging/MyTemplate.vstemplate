@@ -1,0 +1,36 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>BlazorWA.Logging</Name>
+    <Description>Class Library for .NET 6 Logging with Database provider</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>BlazorWA.Logging</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.Logging.csproj" File="BlazorWA.Logging.csproj" ReplaceParameters="true">
+      <Folder Name="Database" TargetFolderName="Database">
+        <Folder Name="Models" TargetFolderName="Models">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ActivityLog.cs">ActivityLog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ActivityType.cs">ActivityType.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ErrorLog.cs">ErrorLog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ErrorType.cs">ErrorType.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="LogLevel.cs">LogLevel.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppLoggingDbContext.cs">AppLoggingDbContext.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DbLogger.cs">DbLogger.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DbLoggerConfiguration.cs">DbLoggerConfiguration.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DbLoggerExtensions.cs">DbLoggerExtensions.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DbLoggerProvider.cs">DbLoggerProvider.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="LogAttribute.cs">LogAttribute.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

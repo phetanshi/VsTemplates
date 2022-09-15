@@ -1,0 +1,93 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>BlazorWA.UI</Name>
+    <Description>State Street Blazor Webassembly project template. This template is based on .NET 6</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>BlazorWA.UI</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.UI.csproj" File="BlazorWA.UI.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
+      </Folder>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot">
+        <Folder Name="css" TargetFolderName="css">
+          <Folder Name="bootstrap" TargetFolderName="bootstrap">
+            <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css.map">bootstrap.min.css.map</ProjectItem>
+          </Folder>
+          <Folder Name="open-iconic" TargetFolderName="open-iconic">
+            <Folder Name="font" TargetFolderName="font">
+              <Folder Name="css" TargetFolderName="css">
+                <ProjectItem ReplaceParameters="true" TargetFileName="open-iconic-bootstrap.min.css">open-iconic-bootstrap.min.css</ProjectItem>
+              </Folder>
+              <Folder Name="fonts" TargetFolderName="fonts">
+                <ProjectItem ReplaceParameters="false" TargetFileName="open-iconic.eot">open-iconic.eot</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="open-iconic.otf">open-iconic.otf</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="open-iconic.svg">open-iconic.svg</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="open-iconic.ttf">open-iconic.ttf</ProjectItem>
+                <ProjectItem ReplaceParameters="false" TargetFileName="open-iconic.woff">open-iconic.woff</ProjectItem>
+              </Folder>
+            </Folder>
+            <ProjectItem ReplaceParameters="false" TargetFileName="FONT-LICENSE">FONT-LICENSE</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ICON-LICENSE">ICON-LICENSE</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="app.css">app.css</ProjectItem>
+		  <ProjectItem ReplaceParameters="true" TargetFileName="appinit.css">appinit.css</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="icon-192.png">icon-192.png</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
+      </Folder>
+      <Folder Name="Auth" TargetFolderName="Auth">
+        <Folder Name="Services" TargetFolderName="Services">
+          <Folder Name="Definitions" TargetFolderName="Definitions">
+            <ProjectItem ReplaceParameters="true" TargetFileName="AppAccessTokenService.cs">AppAccessTokenService.cs</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="IAccessTokenService.cs">IAccessTokenService.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppAuthenticationStateProvider.cs">AppAuthenticationStateProvider.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppAutherizationHandler.cs">AppAutherizationHandler.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Helpers" TargetFolderName="Helpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppMessages.cs">AppMessages.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UriHelper.cs">UriHelper.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Pages" TargetFolderName="Pages">
+        <Folder Name="ServiceHandlers" TargetFolderName="ServiceHandlers">
+          <Folder Name="Definitions" TargetFolderName="Definitions">
+            <ProjectItem ReplaceParameters="true" TargetFileName="SampleServiceHandler.cs">SampleServiceHandler.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ServiceHandlerBase.cs">ServiceHandlerBase.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserServiceHandler.cs">UserServiceHandler.cs</ProjectItem>
+          </Folder>
+          <Folder Name="Interfaces" TargetFolderName="Interfaces">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ISampleServiceHandler.cs">ISampleServiceHandler.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IUserServiceHandler.cs">IUserServiceHandler.cs</ProjectItem>
+          </Folder>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Index.razor">Index.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Sample.razor">Sample.razor</ProjectItem>
+      </Folder>
+      <Folder Name="Shared" TargetFolderName="Shared">
+        <ProjectItem ReplaceParameters="true" TargetFileName="MainLayout.razor">MainLayout.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MainLayout.razor.cs">MainLayout.razor.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NavMenu.razor">NavMenu.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NavMenu.razor.css">NavMenu.razor.css</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="App.razor">App.razor</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

@@ -1,0 +1,54 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>BlazorWA.UnitTest</Name>
+    <Description>Unit Test project usign xUnit, bUnit, Moq, sqlite, open cover, report generator</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>BlazorWA.UnitTest</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.UnitTest.csproj" File="BlazorWA.UnitTest.csproj" ReplaceParameters="true">
+      <Folder Name="Api" TargetFolderName="Api" />
+      <Folder Name="Data" TargetFolderName="Data">
+        <ProjectItem ReplaceParameters="true" TargetFileName="SampleRepositoryTests.cs">SampleRepositoryTests.cs</ProjectItem>
+      </Folder>
+      <Folder Name="TestHelpers" TargetFolderName="TestHelpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ConstructorHelper.cs">ConstructorHelper.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DBDataSets.cs">DBDataSets.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MockHttpClientBunitHelpers.cs">MockHttpClientBunitHelpers.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestDbContext.cs">TestDbContext.cs</ProjectItem>
+      </Folder>
+      <Folder Name="UI" TargetFolderName="UI">
+        <Folder Name="Auth" TargetFolderName="Auth">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AppAccessTokenServiceTests.cs">AppAccessTokenServiceTests.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="AppAuthenticationStateProviderTests.cs">AppAuthenticationStateProviderTests.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Components" TargetFolderName="Components">
+          <Folder Name="Shared" TargetFolderName="Shared">
+            <ProjectItem ReplaceParameters="true" TargetFileName="MainLayoutTests.cs">MainLayoutTests.cs</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SampleTests.cs">SampleTests.cs</ProjectItem>
+        </Folder>
+        <Folder Name="ServiceHandlers" TargetFolderName="ServiceHandlers">
+          <ProjectItem ReplaceParameters="true" TargetFileName="SampleServiceHandlerTests.cs">SampleServiceHandlerTests.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ServiceHandlerBaseTests.cs">ServiceHandlerBaseTests.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserServiceHandlerTests.cs">UserServiceHandlerTests.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="UI.Lib.Components" TargetFolderName="UI.Lib.Components">
+        <Folder Name="Layout" TargetFolderName="Layout">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AppHeaderTests.cs">AppHeaderTests.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Usings.cs">Usings.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
