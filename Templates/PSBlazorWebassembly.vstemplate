@@ -1,13 +1,13 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name>SSC Blazor Webassembly Solution Template</Name>
+    <Name>Blazor Webassembly Solution Template</Name>
     <Description>A solution template for blazor webassembly project with API, Logging, repository pattern and Unit test support!</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
     <SortOrder>1000</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>SSC.BlazorWebassembly</DefaultName>
+    <DefaultName>BlazorWebassembly</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
