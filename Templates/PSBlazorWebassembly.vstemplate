@@ -11,7 +11,7 @@
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-    <Icon>AAI_WEB.png</Icon>
+    <Icon>ps_logo.png</Icon>
 	<ProjectTypeTag>web</ProjectTypeTag>
 	<PlatformTag>windows</PlatformTag>
 	<LanguageTag>csharp</LanguageTag>
