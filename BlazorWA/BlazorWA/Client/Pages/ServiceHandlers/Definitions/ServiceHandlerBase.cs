@@ -53,6 +53,15 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
             }
             return default(T);
         }
+        protected async Task<string> ReadApiStringResponseAsync(HttpResponseMessage httpResponse)
+        {
+            string res = "";
+            if (httpResponse.IsSuccessStatusCode && httpResponse.Content != null)
+            {
+                res = await httpResponse.Content.ReadAsStringAsync();
+            }
+            return res;
+        }
         protected async Task<TResult> Get<TResult>(string uriConfigKey)
         {
             var uri = GetServiceUri(uriConfigKey);
@@ -60,10 +69,60 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
             TResult vm = await ReadApiResponseAsync<TResult>(response);
             return vm;
         }
+        protected async Task<string> GetString(string uriConfigKey)
+        {
+            var uri = GetServiceUri(uriConfigKey);
+            var response = await http.GetStringAsync(uri);
+            return response;
+        }
+        protected async Task<string> PostAndGetString<TInput>(TInput vm, string uriConfigKey)
+        {
+            if (vm == null)
+                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+
+            var uri = GetServiceUri(uriConfigKey);
+
+            var response = await http.PostAsJsonAsync(uri, vm);
+            string result = await ReadApiStringResponseAsync(response);
+            return result;
+        }
+        protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey)
+        {
+            if (fileContent == null)
+                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+
+            var uri = GetServiceUri(uriConfigKey);
+
+            var response = await http.PostAsync(uri, fileContent);
+            string result = await ReadApiStringResponseAsync(response);
+            return result;
+        }
+        protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey, Dictionary<string, string> queryStringsToBeApended)
+        {
+            if (fileContent == null)
+                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+
+            var uri = GetServiceUri(uriConfigKey, queryStringsToBeApended);
+
+            var response = await http.PostAsync(uri, fileContent);
+            string result = await ReadApiStringResponseAsync(response);
+            return result;
+        }
+        protected async Task<TReturn> PostFile<TReturn>(MultipartFormDataContent fileContent, string uriConfigKey)
+        {
+            if (fileContent == null)
+                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+
+            var uri = GetServiceUri(uriConfigKey);
+
+            var response = await http.PostAsync(uri, fileContent);
+            TReturn result = await ReadApiResponseAsync<TReturn>(response);
+            return result;
+        }
         protected async Task<TResult> Post<TInput, TResult>(TInput vm, string uriConfigKey)
         {
             if (vm == null)
-                throw new ArgumentNullException(AppMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
 
             var uri = GetServiceUri(uriConfigKey);
 
