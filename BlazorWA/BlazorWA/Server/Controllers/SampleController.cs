@@ -1,9 +1,6 @@
 ﻿using BlazorWA.Api.Services.Interfaces;
-using BlazorWA.Data;
 using BlazorWA.ViewModels.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorWA.Api.Controllers

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorWA.Domain.DbModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorWA.UnitTest.TestHelpers
 {

@@ -78,7 +78,7 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostAndGetString<TInput>(TInput vm, string uriConfigKey)
         {
             if (vm == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -89,7 +89,7 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -100,7 +100,7 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey, Dictionary<string, string> queryStringsToBeApended)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey, queryStringsToBeApended);
 
@@ -111,7 +111,7 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         protected async Task<TReturn> PostFile<TReturn>(MultipartFormDataContent fileContent, string uriConfigKey)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -122,7 +122,7 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         protected async Task<TResult> Post<TInput, TResult>(TInput vm, string uriConfigKey)
         {
             if (vm == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.ViewModelNullErrorMessage);
+                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 

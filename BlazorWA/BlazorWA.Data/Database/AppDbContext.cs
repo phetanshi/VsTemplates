@@ -1,4 +1,4 @@
-﻿using BlazorWA.Domain;
+﻿using BlazorWA.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorWA.Data.Database

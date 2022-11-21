@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BlazorWA.Domain;
+using BlazorWA.Domain.DbModels;
 using BlazorWA.ViewModels.Models;
 
 namespace BlazorWA.Api.AutoMapperProfiles

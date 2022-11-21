@@ -1,11 +1,6 @@
 ﻿using BlazorWA.Data.Database;
-using BlazorWA.Domain;
+using BlazorWA.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorWA.Data.Definitions
 {

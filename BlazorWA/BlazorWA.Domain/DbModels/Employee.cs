@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BlazorWA.Domain
+namespace BlazorWA.Domain.DbModels
 {
     [Table("tblEmployees")]
     public class Employee
