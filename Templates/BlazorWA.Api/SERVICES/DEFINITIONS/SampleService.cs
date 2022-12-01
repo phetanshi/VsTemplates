@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data;
+using $ext_projectname$.Data.Interfaces;
 using $ext_projectname$.ViewModels.Models;
 
 namespace $safeprojectname$.Services.Definitions

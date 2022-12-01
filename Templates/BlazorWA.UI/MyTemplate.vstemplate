@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.UI</Name>
-    <Description>State Street Blazor Webassembly project template. This template is based on .NET 6</Description>
+    <Description>Blazor Web Assembly Project </Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -12,7 +12,7 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <CreateInPlace>true</CreateInPlace>
-    <Icon>ps_logo_trspt.png</Icon>
+    <Icon>__TemplateIcon.png</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$projectname$.UI.csproj" File="BlazorWA.UI.csproj" ReplaceParameters="true">
@@ -43,7 +43,7 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="app.css">app.css</ProjectItem>
-		  <ProjectItem ReplaceParameters="true" TargetFileName="appinit.css">appinit.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="appinit.css">appinit.css</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
@@ -61,7 +61,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="AppAutherizationHandler.cs">AppAutherizationHandler.cs</ProjectItem>
       </Folder>
       <Folder Name="Helpers" TargetFolderName="Helpers">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AppMessages.cs">AppMessages.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppConstants.cs">AppConstants.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UriHelper.cs">UriHelper.cs</ProjectItem>
       </Folder>
       <Folder Name="Pages" TargetFolderName="Pages">
@@ -76,17 +76,17 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="IUserServiceHandler.cs">IUserServiceHandler.cs</ProjectItem>
           </Folder>
         </Folder>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Index.razor">Index.razor</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Sample.razor">Sample.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Index.razor">Index.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Sample.razor">Sample.razor</ProjectItem>
       </Folder>
       <Folder Name="Shared" TargetFolderName="Shared">
-        <ProjectItem ReplaceParameters="true" TargetFileName="MainLayout.razor">MainLayout.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="MainLayout.razor">MainLayout.razor</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MainLayout.razor.cs">MainLayout.razor.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="NavMenu.razor">NavMenu.razor</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="NavMenu.razor.css">NavMenu.razor.css</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="NavMenu.razor">NavMenu.razor</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="NavMenu.razor.css">NavMenu.razor.css</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="App.razor">App.razor</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="App.razor">App.razor</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
     </Project>
   </TemplateContent>

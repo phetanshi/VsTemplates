@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace $safeprojectname$
+namespace $safeprojectname$.DbModels
 {
     [Table("tblEmployees")]
     public class Employee

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using $safeprojectname$.Components.Services;
 
 namespace $safeprojectname$
 {
@@ -38,6 +39,8 @@ namespace $safeprojectname$
 
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
+
+            builder.Services.AddUILibraryServices();
 
             //builder.Services.AddMsalAuthentication(options =>
             //{

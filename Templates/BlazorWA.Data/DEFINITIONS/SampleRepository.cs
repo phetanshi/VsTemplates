@@ -1,11 +1,7 @@
 ﻿using $safeprojectname$.Database;
-using $ext_projectname$.Domain;
+using $safeprojectname$.Interfaces;
+using $ext_projectname$.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace $safeprojectname$.Definitions
 {

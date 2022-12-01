@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using $ext_projectname$.Domain;
+using $ext_projectname$.Domain.DbModels;
 using $ext_projectname$.ViewModels.Models;
 
 namespace $safeprojectname$.AutoMapperProfiles

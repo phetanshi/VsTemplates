@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.UnitTest</Name>
-    <Description>Unit Test project usign xUnit, bUnit, Moq, sqlite, open cover, report generator</Description>
+    <Description>Unit test project with, MOQ, bUnit, xUnit tests</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -12,11 +12,15 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <CreateInPlace>true</CreateInPlace>
-    <Icon>ps_logo_trspt.png</Icon>
+    <Icon>__TemplateIcon.png</Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$projectname$.UnitTest.csproj" File="BlazorWA.UnitTest.csproj" ReplaceParameters="true">
-      <Folder Name="Api" TargetFolderName="Api" />
+    <Project TargetFileName="BlazorWA.UnitTest.csproj" File="BlazorWA.UnitTest.csproj" ReplaceParameters="true">
+      <Folder Name="Api" TargetFolderName="Api">
+        <Folder Name="Services" TargetFolderName="Services">
+          <ProjectItem ReplaceParameters="true" TargetFileName="SampleServiceTests.cs">SampleServiceTests.cs</ProjectItem>
+        </Folder>
+      </Folder>
       <Folder Name="Data" TargetFolderName="Data">
         <ProjectItem ReplaceParameters="true" TargetFileName="SampleRepositoryTests.cs">SampleRepositoryTests.cs</ProjectItem>
       </Folder>

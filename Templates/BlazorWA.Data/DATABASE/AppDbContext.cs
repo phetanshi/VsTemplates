@@ -1,4 +1,4 @@
-﻿using $ext_projectname$.Domain;
+﻿using $ext_projectname$.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace $safeprojectname$.Database

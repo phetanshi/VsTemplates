@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using $ext_projectname$.Domain.DbModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace $safeprojectname$.TestHelpers
 {

@@ -1,9 +1,9 @@
 ﻿using $safeprojectname$.Services.Interfaces;
+using $ext_projectname$.Domain.Models;
 using $ext_projectname$.ViewModels.Auth;
 using $ext_projectname$.ViewModels.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -13,15 +13,15 @@ namespace $safeprojectname$.Services.Definitions
 {
     public class UserService : IUserService
     {
-        private readonly IConfiguration config;
-        private readonly ILogger<UserService> logger;
-        private readonly byte[]? secureKeyBytes;
+        private readonly IConfiguration _config;
+        private readonly ILogger<UserService> _logger;
+        private readonly byte[]? _secureKeyBytes;
         public UserService(IConfiguration config, ILogger<UserService> logger)
         {
-            this.config = config;
-            this.logger = logger;
-            string secureKey = config["Authentication:JWTSettings:SecretKey"];
-            secureKeyBytes = Encoding.ASCII.GetBytes(secureKey);
+            this._config = config;
+            this._logger = logger;
+            string secureKey = config[AppConstants.ConfigConstants.JwtSecurityKey];
+            _secureKeyBytes = Encoding.ASCII.GetBytes(secureKey);
         }
 
         public async Task<UserVM> GetUserByToken(string token)
@@ -29,7 +29,7 @@ namespace $safeprojectname$.Services.Definitions
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(secureKeyBytes),
+                IssuerSigningKey = new SymmetricSecurityKey(_secureKeyBytes),
                 ValidateIssuer = false,
                 ValidateAudience = false,
                 ValidateLifetime = true
@@ -60,31 +60,20 @@ namespace $safeprojectname$.Services.Definitions
 
         public async Task<bool> IsTokenExpired(string jwtToken)
         {
-            try
-            {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var token = tokenHandler.ReadJwtToken(jwtToken);
-                var hasExpired = token.ValidTo < DateTime.UtcNow;
-                return await Task.FromResult(hasExpired);
-            }
-            catch (SecurityTokenException ex)
-            {
-                logger.LogError(ex.Message, ex);
-            }
-            return await Task.FromResult(true);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.ReadJwtToken(jwtToken);
+            var hasExpired = token.ValidTo < DateTime.UtcNow;
+            return await Task.FromResult(hasExpired);
         }
 
         public async Task<AuthenticationResponse> Login(HttpContext context)
         {
             if (context == null)
-                return null;
+                throw new Exception(AppConstants.ErrorMessages.HTTP_CONTEXT_NOT_FOUND);
 
             UserVM userVm = new UserVM();
+            userVm.UserId = GetLoginUserId(context);
 
-            if (context.User.Identity.IsAuthenticated)
-                userVm.UserId = context.User.Identity.Name;
-            else
-                userVm.UserId = WindowsIdentity.GetCurrent().Name;
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
             if (!string.IsNullOrWhiteSpace(userVm.UserId))
             {
@@ -94,6 +83,18 @@ namespace $safeprojectname$.Services.Definitions
             return await Task.FromResult(authenticationResponse);
         }
 
+        private string GetLoginUserId(HttpContext httpContext)
+        {
+            string userId = "";
+
+            if (httpContext.User.Identity.IsAuthenticated)
+                userId = httpContext.User.Identity.Name;
+            else
+                userId = WindowsIdentity.GetCurrent().Name;
+
+            return userId;
+        }
+
         private string GenerateJwtToken(UserVM userVm)
         {
             var claimUserId = new Claim(ClaimTypes.NameIdentifier, userVm.UserId);
@@ -101,13 +102,13 @@ namespace $safeprojectname$.Services.Definitions
             var claimFirstName = new Claim(AppClaimTypes.FirstName, userVm.FirstName ?? "");
             var claimLastName = new Claim(AppClaimTypes.LastName, userVm.LastName ?? "");
 
-            var claimsIdentity = new ClaimsIdentity(new[] { claimUserId, claimEmail, claimFirstName, claimLastName }, "JwtServerAuth");
+            var claimsIdentity = new ClaimsIdentity(new[] { claimUserId, claimEmail, claimFirstName, claimLastName }, AppConstants.Constants.AuthenticationType);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claimsIdentity,
-                Expires = DateTime.UtcNow.AddMinutes(60),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secureKeyBytes), SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.UtcNow.AddMinutes(AppConstants.Constants.ExpiryTimeInMinutes),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(_secureKeyBytes), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

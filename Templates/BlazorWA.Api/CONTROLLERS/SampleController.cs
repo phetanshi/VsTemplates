@@ -1,9 +1,7 @@
 ﻿using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data;
+using $ext_projectname$.Domain.Models;
 using $ext_projectname$.ViewModels.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace $safeprojectname$.Controllers
@@ -13,9 +11,12 @@ namespace $safeprojectname$.Controllers
     public class SampleController : ControllerBase
     {
         private readonly ISampleService _sampleService;
-        public SampleController(ISampleService sampleService)
+        private readonly ILogger<SampleController> _logger;
+
+        public SampleController(ISampleService sampleService, ILogger<SampleController> logger)
         {
             this._sampleService = sampleService;
+            this._logger = logger;
         }
 
         [HttpGet]
@@ -23,7 +24,15 @@ namespace $safeprojectname$.Controllers
         [Authorize]
         public async Task<ActionResult<List<UserVM>>> GetUsers()
         {
-            return await _sampleService.GetUsers();
+            try
+            {
+                return await _sampleService.GetUsers();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
     }
 }

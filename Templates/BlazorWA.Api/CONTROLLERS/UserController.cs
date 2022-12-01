@@ -1,19 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
-
+﻿using $safeprojectname$.Services.Interfaces;
+using $ext_projectname$.Domain.AppExceptions;
+using $ext_projectname$.Domain.Models;
 using $ext_projectname$.ViewModels.Auth;
 using $ext_projectname$.ViewModels.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using $safeprojectname$.Services.Interfaces;
-using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace $safeprojectname$.Controllers
 {
@@ -23,14 +17,14 @@ namespace $safeprojectname$.Controllers
     {
         private readonly IConfiguration config;
         private readonly IUserService userService;
-        private readonly ILogger<UserController> logger;
+        private readonly ILogger<UserController> _logger;
         
 
         public UserController(IConfiguration config, IUserService userService, ILogger<UserController> logger)
         {
             this.config = config;
             this.userService = userService;
-            this.logger = logger;
+            this._logger = logger;
         }
 
         [HttpPost]
@@ -38,7 +32,15 @@ namespace $safeprojectname$.Controllers
         [Authorize(AuthenticationSchemes = NegotiateDefaults.AuthenticationScheme)]
         public async Task<ActionResult<AuthenticationResponse>> Login()
         {
-            return await userService.Login(HttpContext);
+            try
+            {
+                return await userService.Login(HttpContext);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
 
         [HttpPost]
@@ -46,12 +48,20 @@ namespace $safeprojectname$.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<bool>> IsTokenExpired()
         {
-            if(HttpContext.User.Identity.IsAuthenticated)
+            try
             {
-                string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
-                return await userService.IsTokenExpired(token);
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+                    return await userService.IsTokenExpired(token);
+                }
+                return await Task.FromResult(true);
             }
-            return await Task.FromResult(true);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
 
         [HttpPost]
@@ -59,20 +69,42 @@ namespace $safeprojectname$.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<UserVM>> GetUserByToken()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
+            try
             {
-                string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
-                return await userService.GetUserByToken(token);
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+                    return await userService.GetUserByToken(token);
+                }
+                else
+                    throw new UnauthorizedException(AppConstants.ErrorMessages.UNAUTHORIZED);
             }
-            return null;
+            catch(UnauthorizedException ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status401Unauthorized, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
 
         [HttpGet]
         [Route("logout")]
         public async Task<ActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
-            return Ok();
+            try
+            {
+                await HttpContext.SignOutAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
     }
 }

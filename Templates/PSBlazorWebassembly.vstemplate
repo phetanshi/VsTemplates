@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
     <Name>Blazor Webassembly Solution Template</Name>
-    <Description>A solution template for blazor webassembly project with API, Logging, repository pattern and Unit test support!</Description>
+    <Description>A solution template for  Web API with blazor webassembly UI, Logging, repository pattern and Unit test support!</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>

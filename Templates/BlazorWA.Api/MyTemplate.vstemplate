@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.Api</Name>
-    <Description>.NET 6 Web API project mainly for Blazor Applications</Description>
+    <Description>Web Api project with Blazor webassembly UI</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -12,7 +12,7 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <CreateInPlace>true</CreateInPlace>
-    <Icon>ps_logo_trspt.png</Icon>
+    <Icon>__TemplateIcon.png</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$projectname$.Api.csproj" File="BlazorWA.Api.csproj" ReplaceParameters="true">

@@ -17,7 +17,7 @@ namespace $safeprojectname$.Auth
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var token = await accessTokenService.GetAccessTokenAsync(Helper.AppMessages.TokenKey);
+            var token = await accessTokenService.GetAccessTokenAsync(Helper.AppConstants.AppConfig.TOKEN_KEY);
 
             var uri = request.RequestUri?.AbsoluteUri;
 

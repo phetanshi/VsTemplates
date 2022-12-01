@@ -1,0 +1,15 @@
+﻿@namespace $ext_projectname$.UI.Components
+
+
+<MudThemeProvider Theme="@psTheme" />
+
+@code {
+    MudTheme psTheme = new MudTheme
+        {
+            Palette = new Palette
+            {
+                Primary = UiTheme.Primary,
+                Secondary = UiTheme.Secondary
+            }
+        };
+}

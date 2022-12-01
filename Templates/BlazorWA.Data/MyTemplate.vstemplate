@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.Data</Name>
-    <Description>Class Library for repository layer</Description>
+    <Description>Class library with EF Core support</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -12,7 +12,7 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <CreateInPlace>true</CreateInPlace>
-    <Icon>ps_logo_trspt.png</Icon>
+    <Icon>__TemplateIcon.png</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$projectname$.Data.csproj" File="BlazorWA.Data.csproj" ReplaceParameters="true">
@@ -22,7 +22,9 @@
       <Folder Name="Definitions" TargetFolderName="Definitions">
         <ProjectItem ReplaceParameters="true" TargetFileName="SampleRepository.cs">SampleRepository.cs</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="ISampleRepository.cs">ISampleRepository.cs</ProjectItem>
+      <Folder Name="Interfaces" TargetFolderName="Interfaces">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ISampleRepository.cs">ISampleRepository.cs</ProjectItem>
+      </Folder>
     </Project>
   </TemplateContent>
 </VSTemplate>

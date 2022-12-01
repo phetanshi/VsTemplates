@@ -27,7 +27,7 @@ namespace $safeprojectname$.Auth
             
             if (authNResponse != null && !string.IsNullOrEmpty(authNResponse.Token))
             {
-                await accessTokenService.SetAccessTokenAsync(AppMessages.TokenKey, authNResponse.Token);
+                await accessTokenService.SetAccessTokenAsync(AppConstants.AppConfig.TOKEN_KEY, authNResponse.Token);
                 var loginUser = await userServiceHandler.GetLoginUserDetailsAsync();
                 
                 if (loginUser != null && !string.IsNullOrWhiteSpace(loginUser.UserId))
