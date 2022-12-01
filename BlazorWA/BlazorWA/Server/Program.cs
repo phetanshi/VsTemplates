@@ -1,22 +1,15 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Identity.Web;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.Negotiate;
-using System.Text;
 using BlazorWA.Api.Auth;
-
-
-using BlazorWA.Logging;
-using BlazorWA.Data;
-using BlazorWA.Data.Definitions;
-using BlazorWA.Data.Database;
 using BlazorWA.Api.AutoMapperProfiles;
 using BlazorWA.Api.Services.Definitions;
-using Microsoft.OpenApi.Models;
 using BlazorWA.Api.Services.Interfaces;
+using BlazorWA.Data.Database;
+using BlazorWA.Data.Definitions;
+using BlazorWA.Data.Interfaces;
+using BlazorWA.Logging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace BlazorWA.Api
 {

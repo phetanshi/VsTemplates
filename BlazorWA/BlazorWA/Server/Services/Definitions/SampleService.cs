@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BlazorWA.Api.Services.Interfaces;
-using BlazorWA.Data;
+using BlazorWA.Data.Interfaces;
 using BlazorWA.ViewModels.Models;
 
 namespace BlazorWA.Api.Services.Definitions

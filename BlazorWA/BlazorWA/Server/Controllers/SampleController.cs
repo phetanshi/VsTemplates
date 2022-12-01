@@ -1,4 +1,5 @@
 ﻿using BlazorWA.Api.Services.Interfaces;
+using BlazorWA.Domain.Models;
 using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,12 @@ namespace BlazorWA.Api.Controllers
     public class SampleController : ControllerBase
     {
         private readonly ISampleService _sampleService;
-        public SampleController(ISampleService sampleService)
+        private readonly ILogger<SampleController> _logger;
+
+        public SampleController(ISampleService sampleService, ILogger<SampleController> logger)
         {
             this._sampleService = sampleService;
+            this._logger = logger;
         }
 
         [HttpGet]
@@ -20,7 +24,15 @@ namespace BlazorWA.Api.Controllers
         [Authorize]
         public async Task<ActionResult<List<UserVM>>> GetUsers()
         {
-            return await _sampleService.GetUsers();
+            try
+            {
+                return await _sampleService.GetUsers();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.ToString());
+                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
+            }
         }
     }
 }

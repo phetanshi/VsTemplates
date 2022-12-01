@@ -1,4 +1,5 @@
 ﻿using BlazorWA.Data.Database;
+using BlazorWA.Data.Interfaces;
 using BlazorWA.Domain.DbModels;
 using Microsoft.EntityFrameworkCore;
 
