@@ -1,27 +1,21 @@
 ﻿using AutoMapper;
 using BlazorWA.Api.Services.Interfaces;
-using BlazorWA.Data.Interfaces;
+using BlazorWA.Data;
+using BlazorWA.Data.DbModels;
 using BlazorWA.ViewModels.Models;
 
 namespace BlazorWA.Api.Services.Definitions
 {
-    public class SampleService : ISampleService
+    public class SampleService : ServiceBase, ISampleService
     {
-        private readonly ISampleRepository sampleRepository;
-        private readonly IMapper mapper;
-        private readonly ILogger<SampleService> logger;
-
-        public SampleService(ISampleRepository sampleRepository, IMapper mapper, ILogger<SampleService> logger)
+        public SampleService(IRepository repository, ILogger<SampleService> logger, IConfiguration config, IMapper mapper) : base(repository, logger, config, mapper)
         {
-            this.sampleRepository = sampleRepository;
-            this.mapper = mapper;
-            this.logger = logger;
         }
         public async Task<List<UserVM>> GetUsers()
         {
             List<UserVM> users = new List<UserVM>();
-            var empList =  await sampleRepository.GetEmployeesAsync();
-            mapper.Map(empList, users);
+            var empList =  await Repository.GetAllAsync<Employee>();
+            Mapper.Map(empList, users);
             return users;
         }
     }

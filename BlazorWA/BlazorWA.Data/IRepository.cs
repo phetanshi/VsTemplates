@@ -21,21 +21,14 @@ namespace BlazorWA.Data
 
         #region GetById
         T GetById<T>(int id) where T : class;
-        Task<T> GetByIdAsync<T>(int id) where T : class;
-
-
-        T GetById<T>(params int[] compositKey) where T : class;
-        Task<T> GetByIdAsync<T>(params int[] compositKey) where T : class;
-
+        T GetById<T>(params object[] compositKey) where T : class;
         T GetById<T>(string primaryKeyValue) where T : class;
-        Task<T> GetByIdAsync<T>(string primaryKeyValue) where T : class;
-
-
-        T GetById<T>(params string[] strCompositKey) where T : class;
-        Task<T> GetByIdAsync<T>(params string[] strCompositKey) where T : class;
-
-
         T GetById<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+
+        Task<T> GetByIdAsync<T>(int id) where T : class;
+        Task<T> GetByIdAsync<T>(params object[] strCompositKey) where T : class;
+        Task<T> GetByIdAsync<T>(string primaryKeyValue) where T : class;
         Task<T> GetByIdAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
         #endregion
 

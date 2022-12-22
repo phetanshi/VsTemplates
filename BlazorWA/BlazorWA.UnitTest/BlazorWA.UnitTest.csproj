@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorWA.Data\BlazorWA.Data.csproj" />
-    <ProjectReference Include="..\BlazorWA.Domain\BlazorWA.Domain.csproj" />
     <ProjectReference Include="..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
     <ProjectReference Include="..\BlazorWA\Client\BlazorWA.UI.csproj" />
     <ProjectReference Include="..\BlazorWA\Server\BlazorWA.Api.csproj" />

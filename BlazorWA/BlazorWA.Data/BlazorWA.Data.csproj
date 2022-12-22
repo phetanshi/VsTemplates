@@ -15,12 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorWA.Domain\BlazorWA.Domain.csproj" />
     <ProjectReference Include="..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DbModels\" />
     <Folder Include="Dtos\" />
   </ItemGroup>
 

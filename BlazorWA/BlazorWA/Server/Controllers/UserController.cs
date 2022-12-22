@@ -1,6 +1,6 @@
 ﻿using BlazorWA.Api.Services.Interfaces;
-using BlazorWA.Domain.AppExceptions;
-using BlazorWA.Domain.Models;
+using BlazorWA.Data;
+using BlazorWA.Data.AppExceptions;
 using BlazorWA.ViewModels.Auth;
 using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authentication;

@@ -1,5 +1,4 @@
-﻿using BlazorWA.Domain;
-using BlazorWA.ViewModels.Models;
+﻿using BlazorWA.ViewModels.Models;
 
 namespace BlazorWA.Api.Services.Interfaces
 {

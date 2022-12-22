@@ -8,18 +8,19 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorWA.Data.Definition
+namespace BlazorWA.Data.Definitions
 {
-    public class SqlRepository : IRepository
+    public class AppRepository : IRepository
     {
-        public SqlRepository(AppDbContext database, ILogger<SqlRepository> logger)
+        private readonly ILogger<AppRepository> _logger;
+
+        public AppRepository(AppDbContext database, ILogger<AppRepository> logger)
         {
             Database = database;
-            Logger = logger;
+            this._logger = logger;
         }
 
         public AppDbContext Database { get; }
-        public ILogger<SqlRepository> Logger { get; }
 
         #region GetAll
         public IQueryable<T> GetAll<T>() where T : class
@@ -50,47 +51,32 @@ namespace BlazorWA.Data.Definition
         {
             return Database.Set<T>().Find(id);
         }
-
-        public T GetById<T>(params int[] compositKey) where T : class
+        public T GetById<T>(params object[] compositKey) where T : class
         {
             return Database.Set<T>().Find(compositKey);
         }
-
         public T GetById<T>(string primaryKeyValue) where T : class
         {
             return Database.Set<T>().Find(primaryKeyValue);
         }
-
-        public T GetById<T>(params string[] strCompositKey) where T : class
-        {
-            return Database.Set<T>().Find(strCompositKey);
-        }
-
         public T GetById<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return Database.Set<T>().FirstOrDefault(predicate);
         }
-
+        
+        
         public async Task<T> GetByIdAsync<T>(int id) where T : class
         {
             return await Database.Set<T>().FindAsync(id);
         }
-
-        public async Task<T> GetByIdAsync<T>(params int[] compositKey) where T : class
+        public async Task<T> GetByIdAsync<T>(params object[] strCompositKey) where T : class
         {
-            return await Database.Set<T>().FindAsync(compositKey);
+            return await Database.Set<T>().FindAsync(strCompositKey);
         }
-
         public async Task<T> GetByIdAsync<T>(string primaryKeyValue) where T : class
         {
             return await Database.Set<T>().FindAsync(primaryKeyValue);
         }
-
-        public async Task<T> GetByIdAsync<T>(params string[] strCompositKey) where T : class
-        {
-            return await Database.Set<T>().FindAsync(strCompositKey);
-        }
-
         public async Task<T> GetByIdAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return await Database.Set<T>().FirstOrDefaultAsync(predicate);
