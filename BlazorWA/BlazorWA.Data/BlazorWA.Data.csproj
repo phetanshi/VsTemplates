@@ -19,4 +19,9 @@
     <ProjectReference Include="..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DbModels\" />
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>
