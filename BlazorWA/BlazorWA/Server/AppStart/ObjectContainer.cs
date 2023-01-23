@@ -7,9 +7,9 @@ using BlazorWA.Logging;
 
 namespace BlazorWA.Api.AppStart
 {
-    public static class DependencyConfig
+    public static class ObjectContainer
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services)
+        public static IServiceCollection AddApplicationObjects(this IServiceCollection services)
         {
             services.AddServiceDependencies();
             services.AddRepository();

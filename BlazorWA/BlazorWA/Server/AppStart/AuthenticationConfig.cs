@@ -27,9 +27,6 @@ namespace BlazorWA.Api.AppStart
             }).AddAppSpecificJwtBearer(config["Authentication:JWTSettings:SecretKey"]);
 
         }
-
-
-
         private static AuthenticationBuilder AddAppSpecificJwtBearer(this AuthenticationBuilder builder, string securityKey)
         {
             builder.AddJwtBearer(jwtBearerOptions =>

@@ -19,18 +19,10 @@ namespace BlazorWA.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            builder.AddSqlServerDatabase();
-
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
-            builder.Services.AddDependencies();
-            builder.Services.AddAuthenticationSchemes(builder.Configuration);
-            builder.Services.AddSwaggerWithAutherization();
-
-            builder.Build().AddMiddlewares();
-
+            builder.AddSqlServerDatabase()
+                    .AddAppServices()
+                    .Build()
+                    .AddMiddlewares();
         }
     }
 }
