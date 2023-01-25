@@ -1,5 +1,4 @@
 using BlazorWA.Api.AppStart;
-using BlazorWA.Api.Auth;
 using BlazorWA.Api.AutoMapperProfiles;
 using BlazorWA.Api.Services.Definitions;
 using BlazorWA.Api.Services.Interfaces;
