@@ -1,5 +1,4 @@
 ﻿using BlazorWA.UI.Helpers;
-using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System.Net;
 using System.Net.Http.Headers;

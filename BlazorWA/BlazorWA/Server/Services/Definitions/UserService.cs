@@ -1,8 +1,7 @@
-﻿using BlazorWA.Api.Services.Interfaces;
+﻿using BlazorWA.Api.Auth;
+using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
 using BlazorWA.Data.Constants;
-using BlazorWA.ViewModels.Auth;
-using BlazorWA.ViewModels.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,7 +24,7 @@ namespace BlazorWA.Api.Services.Definitions
             _secureKeyBytes = Encoding.ASCII.GetBytes(secureKey);
         }
 
-        public async Task<UserVM> GetUserByToken(string token)
+        public async Task<IdentityVM> GetUserByToken(string token)
         {
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -46,7 +45,7 @@ namespace BlazorWA.Api.Services.Definitions
                 var userId = principle.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (userId != null)
                 {
-                    UserVM user = new UserVM();
+                    IdentityVM user = new IdentityVM();
                     user.UserId = userId;
 
                     //Uncomment below to add few more claims
@@ -72,7 +71,7 @@ namespace BlazorWA.Api.Services.Definitions
             if (context == null)
                 throw new Exception(ErrorMessages.HTTP_CONTEXT_NOT_FOUND);
 
-            UserVM userVm = new UserVM();
+            IdentityVM userVm = new IdentityVM();
             userVm.UserId = GetLoginUserId(context);
 
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
@@ -80,7 +79,7 @@ namespace BlazorWA.Api.Services.Definitions
             {
                 authenticationResponse.Token = GenerateJwtToken(userVm);
             }
-
+            context.Response.Cookies.Append("access_token", authenticationResponse.Token, new CookieOptions { HttpOnly = true });
             return await Task.FromResult(authenticationResponse);
         }
 
@@ -96,7 +95,7 @@ namespace BlazorWA.Api.Services.Definitions
             return userId;
         }
 
-        private string GenerateJwtToken(UserVM userVm)
+        private string GenerateJwtToken(IdentityVM userVm)
         {
             var claimUserId = new Claim(ClaimTypes.NameIdentifier, userVm.UserId);
             var claimEmail = new Claim(ClaimTypes.Email, userVm.Email ?? "");

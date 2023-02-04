@@ -42,21 +42,21 @@
         [Fact]
         public async Task Post_WhenCalledWithViewModel_ReturnsResponseOfGivenType()
         {
-            UserVM user = new UserVM();
-            var response = await Post<UserVM, UserVM>(user, "Api:Post");
+            IdentityVM user = new IdentityVM();
+            var response = await Post<IdentityVM, IdentityVM>(user, "Api:Post");
             Assert.Equal("test post response", response.FirstName);
         }
 
         [Fact]
         public async Task Post_WhenCalledWithViewModelAsNull_ThrowsArgumentNullException()
         {
-            await Assert.ThrowsAnyAsync<ArgumentNullException>(() => Post<UserVM, UserVM>(null, "Api:Post"));
+            await Assert.ThrowsAnyAsync<ArgumentNullException>(() => Post<IdentityVM, IdentityVM>(null, "Api:Post"));
         }
 
         [Fact]
         public async Task Post_WhenCalledWithStringValueAsParamter_ReturnsResponseOfGivenType()
         {
-            var response = await Post<UserVM>("this_is_test_string", "Api:Post");
+            var response = await Post<IdentityVM>("this_is_test_string", "Api:Post");
             Assert.Equal("test post response", response.FirstName);
         }
     }

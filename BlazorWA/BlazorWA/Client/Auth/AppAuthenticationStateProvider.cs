@@ -1,8 +1,6 @@
 ﻿using BlazorWA.UI.Auth.Services;
 using BlazorWA.UI.Helpers;
 using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
-using BlazorWA.ViewModels.Auth;
-using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;

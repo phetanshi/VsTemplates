@@ -16,7 +16,7 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new UserVM { UserId = "testuserid" });
+            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new IdentityVM { UserId = "testuserid" });
             mockHttp.When($"{httpUrl}/user/IsTokenExpired").RespondJson(false);
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");
@@ -45,7 +45,7 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new UserVM { UserId = "testuserid" });
+            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new IdentityVM { UserId = "testuserid" });
             mockHttp.When($"{httpUrl}/user/IsTokenExpired").RespondJson(true);
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");
@@ -72,7 +72,7 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/Login").RespondJson(new AuthenticationResponse { Token = "testtoken" });
+            mockHttp.When($"{httpUrl}/user/Login").RespondJson(new BlazorWA.UI.Auth.AuthenticationResponse { Token = "testtoken" });
             
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");

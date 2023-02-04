@@ -1,4 +1,4 @@
-﻿using BlazorWA.ViewModels.Auth;
+﻿using BlazorWA.UI.Auth;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;

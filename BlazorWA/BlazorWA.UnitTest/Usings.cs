@@ -10,17 +10,14 @@ global using BlazorWA.UI.Pages;
 global using BlazorWA.UI.Pages.ServiceHandlers.Definitions;
 global using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
 global using BlazorWA.UnitTest.TestHelpers;
-global using BlazorWA.ViewModels.Auth;
-global using BlazorWA.ViewModels.Models;
 global using Bunit;
 global using Bunit.TestDoubles;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Moq;
 global using RichardSzalay.MockHttp;
-global using System;
-global using System.Collections.Generic;
 global using Xunit;
+global using BlazorWA.Api.Auth;
 
 
 global using Microsoft.Data.Sqlite;

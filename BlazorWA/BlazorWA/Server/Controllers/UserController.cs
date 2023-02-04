@@ -1,9 +1,9 @@
-﻿using BlazorWA.Api.Services.Interfaces;
+﻿using BlazorWA.Api.Auth;
+using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
 using BlazorWA.Data.AppExceptions;
 using BlazorWA.Data.Constants;
-using BlazorWA.ViewModels.Auth;
-using BlazorWA.ViewModels.Models;
+using BlazorWA.UI.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Negotiate;
@@ -28,8 +28,8 @@ namespace BlazorWA.Api.Controllers
         [Authorize(AuthenticationSchemes = NegotiateDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Login()
         {
-            AuthenticationResponse response = await _userService.Login(HttpContext);
-            return OkWrapper(response);
+            await _userService.Login(HttpContext);
+            return OkWrapper();
         }
 
         [HttpPost]
@@ -56,7 +56,7 @@ namespace BlazorWA.Api.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string token = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
-                UserVM data = await _userService.GetUserByToken(token);
+                IdentityVM data = await _userService.GetUserByToken(token);
                 return OkWrapper(data);
             }
             else

@@ -1,9 +1,9 @@
-﻿using BlazorWA.ViewModels.Models;
+﻿using BlazorWA.UI.Auth;
 
 namespace BlazorWA.UI.Pages.ServiceHandlers.Interfaces
 {
     public interface ISampleServiceHandler
     {
-        Task<List<UserVM>> GetUsersAsync();
+        Task<List<LoginUser>> GetUsersAsync();
     }
 }

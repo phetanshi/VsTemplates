@@ -1,6 +1,6 @@
 ﻿using Helpers = BlazorWA.UI.Helpers;
 using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
-using BlazorWA.ViewModels.Models;
+using BlazorWA.UI.Auth;
 
 namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
 {
@@ -10,9 +10,9 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
         {
         }
 
-        public async Task<List<UserVM>> GetUsersAsync()
+        public async Task<List<LoginUser>> GetUsersAsync()
         {
-            return await Get<List<UserVM>>(Helpers.UriHelper.SampleUsers);
+            return await Get<List<LoginUser>>(Helpers.UriHelper.SampleUsers);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace BlazorWA.UnitTest.UI.Components
 
             ctx.Services.AddSingleton<ISampleServiceHandler>(sampleServiceHandlerMock.Object);
 
-            sampleServiceHandlerMock.Setup(x => x.GetUsersAsync()).ReturnsAsync(new List<UserVM> { new UserVM { UserId = "CORP\\e777777" } });
+            sampleServiceHandlerMock.Setup(x => x.GetUsersAsync()).ReturnsAsync(new List<LoginUser> { new LoginUser { UserId = "CORP\\e777777" } });
 
             var cut = ctx.RenderComponent<Sample>();
 
@@ -40,7 +40,7 @@ namespace BlazorWA.UnitTest.UI.Components
 
             ctx.Services.AddSingleton<ISampleServiceHandler>(sampleServiceHandlerMock.Object);
 
-            sampleServiceHandlerMock.Setup(x => x.GetUsersAsync()).ReturnsAsync(default(List<UserVM>));
+            sampleServiceHandlerMock.Setup(x => x.GetUsersAsync()).ReturnsAsync(default(List<LoginUser>));
 
             var cut = ctx.RenderComponent<Sample>();
 

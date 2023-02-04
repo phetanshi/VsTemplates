@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using BlazorWA.UI.Auth;
+using System.Security.Claims;
 
 namespace BlazorWA.UnitTest.UI.Auth
 {
@@ -10,8 +11,8 @@ namespace BlazorWA.UnitTest.UI.Auth
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
             var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new AuthenticationResponse { Token = "testtoken" });
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(new UserVM { UserId = "testuserid", FirstName = "TestFirstName" });
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new BlazorWA.UI.Auth.AuthenticationResponse { Token = "testtoken" });
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(new LoginUser { UserId = "testuserid", FirstName = "TestFirstName" });
             accessTokenServiceMock.Setup(x=>x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);
@@ -26,8 +27,8 @@ namespace BlazorWA.UnitTest.UI.Auth
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
             var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(default(AuthenticationResponse));
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(UserVM));
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(default(BlazorWA.UI.Auth.AuthenticationResponse));
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(LoginUser));
             accessTokenServiceMock.Setup(x => x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);
@@ -41,8 +42,8 @@ namespace BlazorWA.UnitTest.UI.Auth
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
             var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new AuthenticationResponse { Token = "testtoken" });
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(UserVM));
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new BlazorWA.UI.Auth.AuthenticationResponse { Token = "testtoken" });
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(LoginUser));
             accessTokenServiceMock.Setup(x => x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
 
             AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);

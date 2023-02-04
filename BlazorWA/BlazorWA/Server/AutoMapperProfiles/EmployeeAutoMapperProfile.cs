@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using BlazorWA.Api.Auth;
 using BlazorWA.Data.DbModels;
-using BlazorWA.ViewModels.Models;
 
 namespace BlazorWA.Api.AutoMapperProfiles
 {
@@ -8,7 +8,7 @@ namespace BlazorWA.Api.AutoMapperProfiles
     {
         public EmployeeAutoMapperProfile()
         {
-            CreateMap<Employee, UserVM>()
+            CreateMap<Employee, IdentityVM>()
                 .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.EmployeeId))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))

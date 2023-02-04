@@ -15,9 +15,9 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            List<UserVM> users = new List<UserVM>
+            List<IdentityVM> users = new List<IdentityVM>
             {
-                new UserVM { UserId="testuserid" }
+                new IdentityVM { UserId="testuserid" }
             };
 
             mockHttp.When($"{httpUrl}/*").RespondJson(users);

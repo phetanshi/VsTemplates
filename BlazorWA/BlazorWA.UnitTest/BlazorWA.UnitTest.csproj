@@ -33,7 +33,6 @@
     <ProjectReference Include="..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
     <ProjectReference Include="..\BlazorWA\Client\BlazorWA.UI.csproj" />
     <ProjectReference Include="..\BlazorWA\Server\BlazorWA.Api.csproj" />
-    <ProjectReference Include="..\BlazorWA\Shared\BlazorWA.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

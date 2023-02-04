@@ -1,8 +1,7 @@
 ﻿using BlazorWA.UI.Auth.Services;
 using Helpers = BlazorWA.UI.Helpers;
 using BlazorWA.UI.Pages.ServiceHandlers.Interfaces;
-using BlazorWA.ViewModels.Auth;
-using BlazorWA.ViewModels.Models;
+using BlazorWA.UI.Auth;
 
 namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
 {
@@ -15,14 +14,14 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Definitions
             this.accessTokenService = accessTokenService;
         }
 
-        public async Task<UserVM> GetLoginUserDetailsAsync()
+        public async Task<LoginUser> GetLoginUserDetailsAsync()
         {
             bool isExpired = await IsTokenExpiredAsync();
 
             if (isExpired)
                 return null;
 
-            return await Post<UserVM>(Helpers.UriHelper.LoginUserDetails);
+            return await Post<LoginUser>(Helpers.UriHelper.LoginUserDetails);
         }
 
         public async Task<bool> IsTokenExpiredAsync()

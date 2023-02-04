@@ -1,7 +1,7 @@
-﻿using BlazorWA.Api.Services.Interfaces;
+﻿using BlazorWA.Api.Auth;
+using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
 using BlazorWA.Data.Constants;
-using BlazorWA.ViewModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +24,7 @@ namespace BlazorWA.Api.Controllers
         [Authorize]
         public async Task<IActionResult> GetUsers()
         {
-            List<UserVM> data = await _sampleService.GetUsers();
+            List<IdentityVM> data = await _sampleService.GetUsers();
             return OkWrapper(data);
         }
     }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazorWA.ViewModels.Models
+﻿namespace BlazorWA.Api.Auth
 {
-    public class UserVM
+    public class IdentityVM
     {
         public int EmployeeId { get; set; }
         public string UserId { get; set; }

@@ -1,5 +1,6 @@
-﻿using BlazorWA.ViewModels.Auth;
-using BlazorWA.ViewModels.Models;
+﻿
+
+using BlazorWA.UI.Auth;
 
 namespace BlazorWA.UI.Pages.ServiceHandlers.Interfaces
 {
@@ -7,6 +8,6 @@ namespace BlazorWA.UI.Pages.ServiceHandlers.Interfaces
     {
         Task<AuthenticationResponse> LoginAsync();
         Task<bool> IsTokenExpiredAsync();
-        Task<UserVM> GetLoginUserDetailsAsync();
+        Task<LoginUser> GetLoginUserDetailsAsync();
     }
 }

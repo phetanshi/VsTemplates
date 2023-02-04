@@ -26,7 +26,6 @@
     <ProjectReference Include="..\..\BlazorWA.Data\BlazorWA.Data.csproj" />
     <ProjectReference Include="..\..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
     <ProjectReference Include="..\Client\BlazorWA.UI.csproj" />
-    <ProjectReference Include="..\Shared\BlazorWA.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
