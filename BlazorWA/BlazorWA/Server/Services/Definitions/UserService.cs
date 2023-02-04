@@ -1,5 +1,6 @@
 ﻿using BlazorWA.Api.Services.Interfaces;
 using BlazorWA.Data;
+using BlazorWA.Data.Constants;
 using BlazorWA.ViewModels.Auth;
 using BlazorWA.ViewModels.Models;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,7 @@ namespace BlazorWA.Api.Services.Definitions
         {
             this._config = config;
             this._logger = logger;
-            string secureKey = config[AppConstants.ConfigConstants.JwtSecurityKey];
+            string secureKey = config[ConfigConstants.JwtSecurityKey];
             _secureKeyBytes = Encoding.ASCII.GetBytes(secureKey);
         }
 
@@ -69,7 +70,7 @@ namespace BlazorWA.Api.Services.Definitions
         public async Task<AuthenticationResponse> Login(HttpContext context)
         {
             if (context == null)
-                throw new Exception(AppConstants.ErrorMessages.HTTP_CONTEXT_NOT_FOUND);
+                throw new Exception(ErrorMessages.HTTP_CONTEXT_NOT_FOUND);
 
             UserVM userVm = new UserVM();
             userVm.UserId = GetLoginUserId(context);
@@ -102,12 +103,12 @@ namespace BlazorWA.Api.Services.Definitions
             var claimFirstName = new Claim(AppClaimTypes.FirstName, userVm.FirstName ?? "");
             var claimLastName = new Claim(AppClaimTypes.LastName, userVm.LastName ?? "");
 
-            var claimsIdentity = new ClaimsIdentity(new[] { claimUserId, claimEmail, claimFirstName, claimLastName }, AppConstants.Constants.AuthenticationType);
+            var claimsIdentity = new ClaimsIdentity(new[] { claimUserId, claimEmail, claimFirstName, claimLastName }, AppConstants.AuthenticationType);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claimsIdentity,
-                Expires = DateTime.UtcNow.AddMinutes(AppConstants.Constants.ExpiryTimeInMinutes),
+                Expires = DateTime.UtcNow.AddMinutes(AppConstants.ExpiryTimeInMinutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(_secureKeyBytes), SecurityAlgorithms.HmacSha256Signature)
             };
 

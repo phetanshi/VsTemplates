@@ -92,7 +92,6 @@ namespace BlazorWA.Logging
                     errorLog.ErrorType = exception.GetType()?.FullName ?? "-"; 
                 }
 
-
                 loggerDbContext.ErrorLogs.Add(errorLog);
                 loggerDbContext.SaveChanges();
 

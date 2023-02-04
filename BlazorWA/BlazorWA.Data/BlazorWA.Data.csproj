@@ -18,8 +18,4 @@
     <ProjectReference Include="..\BlazorWA.Logging\BlazorWA.Logging.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
-
 </Project>
