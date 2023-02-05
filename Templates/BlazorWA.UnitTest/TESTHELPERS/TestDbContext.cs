@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace $safeprojectname$.TestHelpers
 {
@@ -10,6 +11,7 @@ namespace $safeprojectname$.TestHelpers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<StudentSubjectMapping>().HasKey(x => new { x.StudId, x.SubId });
             modelBuilder.Seed();
         }
     }

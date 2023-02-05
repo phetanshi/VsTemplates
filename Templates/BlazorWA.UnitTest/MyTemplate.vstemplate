@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.UnitTest</Name>
-    <Description>Unit test project with, MOQ, bUnit, xUnit tests</Description>
+    <Description>Padmasekhar's Unit Test proejct </Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -15,24 +15,27 @@
     <Icon>__TemplateIcon.png</Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="BlazorWA.UnitTest.csproj" File="BlazorWA.UnitTest.csproj" ReplaceParameters="true">
+    <Project TargetFileName="$projectname$.UnitTest.csproj" File="BlazorWA.UnitTest.csproj" ReplaceParameters="true">
       <Folder Name="Api" TargetFolderName="Api">
         <Folder Name="Services" TargetFolderName="Services">
           <ProjectItem ReplaceParameters="true" TargetFileName="SampleServiceTests.cs">SampleServiceTests.cs</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Data" TargetFolderName="Data">
-        <ProjectItem ReplaceParameters="true" TargetFileName="SampleRepositoryTests.cs">SampleRepositoryTests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_GetAll_Tests.cs">AppRepository_GetAll_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_GetById_Tests.cs">AppRepository_GetById_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_Insert_Tests.cs">AppRepository_Insert_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_Update_Tests.cs">AppRepository_Update_Tests.cs</ProjectItem>
       </Folder>
       <Folder Name="TestHelpers" TargetFolderName="TestHelpers">
         <ProjectItem ReplaceParameters="true" TargetFileName="ConstructorHelper.cs">ConstructorHelper.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="DBDataSets.cs">DBDataSets.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MockHttpClientBunitHelpers.cs">MockHttpClientBunitHelpers.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestDatabaseHelper.cs">TestDatabaseHelper.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="TestDbContext.cs">TestDbContext.cs</ProjectItem>
       </Folder>
       <Folder Name="UI" TargetFolderName="UI">
         <Folder Name="Auth" TargetFolderName="Auth">
-          <ProjectItem ReplaceParameters="true" TargetFileName="AppAccessTokenServiceTests.cs">AppAccessTokenServiceTests.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="AppAuthenticationStateProviderTests.cs">AppAuthenticationStateProviderTests.cs</ProjectItem>
         </Folder>
         <Folder Name="Components" TargetFolderName="Components">

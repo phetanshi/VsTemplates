@@ -1,38 +1,31 @@
-﻿using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Domain.Models;
-using $ext_projectname$.ViewModels.Models;
+﻿using $safeprojectname$.Auth;
+using $safeprojectname$.Services.Interfaces;
+using $ext_projectname$.Data;
+using $ext_projectname$.Data.Constants;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace $safeprojectname$.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class SampleController : ControllerBase
+    public class SampleController : AppBaseController
     {
         private readonly ISampleService _sampleService;
-        private readonly ILogger<SampleController> _logger;
 
-        public SampleController(ISampleService sampleService, ILogger<SampleController> logger)
+        public SampleController(ISampleService sampleService, IConfiguration config, ILogger<SampleController> logger) : base(config, logger)
         {
-            this._sampleService = sampleService;
-            this._logger = logger;
+            _sampleService = sampleService;
         }
 
         [HttpGet]
         [Route("users")]
         [Authorize]
-        public async Task<ActionResult<List<UserVM>>> GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            try
-            {
-                return await _sampleService.GetUsers();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.ToString());
-                return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError, AppConstants.ErrorMessages.UNHANDLED_EXCEPTION);
-            }
+            List<IdentityVM> data = await _sampleService.GetUsers();
+            return OkWrapper(data);
         }
     }
 }

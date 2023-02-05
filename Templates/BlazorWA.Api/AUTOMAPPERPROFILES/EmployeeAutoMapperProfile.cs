@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using $ext_projectname$.Domain.DbModels;
-using $ext_projectname$.ViewModels.Models;
+using $safeprojectname$.Auth;
+using $ext_projectname$.Data.DbModels;
 
 namespace $safeprojectname$.AutoMapperProfiles
 {
@@ -8,7 +8,7 @@ namespace $safeprojectname$.AutoMapperProfiles
     {
         public EmployeeAutoMapperProfile()
         {
-            CreateMap<Employee, UserVM>()
+            CreateMap<Employee, IdentityVM>()
                 .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.EmployeeId))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))

@@ -6,7 +6,7 @@
     <ProjectSubType>
     </ProjectSubType>
     <SortOrder>1000</SortOrder>
-    <CreateNewFolder>true</CreateNewFolder>
+    <CreateNewFolder>false</CreateNewFolder>
     <DefaultName>BlazorWebassembly</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
@@ -24,9 +24,6 @@
 	  <ProjectTemplateLink ProjectName="$projectname$.Data" CopyParameters="true">
         BlazorWA.Data\MyTemplate.vstemplate
       </ProjectTemplateLink>
-	  <ProjectTemplateLink ProjectName="$projectname$.Domain" CopyParameters="true">
-        BlazorWA.Domain\MyTemplate.vstemplate
-      </ProjectTemplateLink>
 	  <ProjectTemplateLink ProjectName="$projectname$.Logging" CopyParameters="true">
         BlazorWA.Logging\MyTemplate.vstemplate
       </ProjectTemplateLink>
@@ -38,9 +35,6 @@
       </ProjectTemplateLink>
 	  <ProjectTemplateLink ProjectName="$projectname$.UnitTest" CopyParameters="true">
         BlazorWA.UnitTest\MyTemplate.vstemplate
-      </ProjectTemplateLink>
-	  <ProjectTemplateLink ProjectName="$projectname$.ViewModels" CopyParameters="true">
-        BlazorWA.ViewModels\MyTemplate.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
   </TemplateContent>

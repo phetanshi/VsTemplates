@@ -1,12 +1,12 @@
-﻿using $ext_projectname$.ViewModels.Auth;
-using $ext_projectname$.ViewModels.Models;
+﻿using $safeprojectname$.Auth;
+using $safeprojectname$.Helpers;
 
 namespace $safeprojectname$.Pages.ServiceHandlers.Interfaces
 {
     public interface IUserServiceHandler
     {
-        Task<AuthenticationResponse> LoginAsync();
+        Task<ApiResponse> LoginAsync();
         Task<bool> IsTokenExpiredAsync();
-        Task<UserVM> GetLoginUserDetailsAsync();
+        Task<Person> GetLoginUserDetailsAsync();
     }
 }

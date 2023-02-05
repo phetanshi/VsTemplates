@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using $ext_projectname$.UI.Auth;
+using System.Security.Claims;
 
 namespace $safeprojectname$.UI.Auth
 {
@@ -8,13 +9,10 @@ namespace $safeprojectname$.UI.Auth
         public async Task GetAuthenticationStateAsync_WhenLoginIsValid_ReturnAuthenticaitonStateObjectWithUserIdClaim()
         {
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new AuthenticationResponse { Token = "testtoken" });
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(new UserVM { UserId = "testuserid", FirstName = "TestFirstName" });
-            accessTokenServiceMock.Setup(x=>x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
-
-            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new $ext_projectname$.UI.Helpers.ApiResponse { IsSuccess = true });
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(new Person { UserId = "testuserid", FirstName = "TestFirstName" });
+            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object);
             var response = await obj.GetAuthenticationStateAsync();
             var userIdClaim = response.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier);
             Assert.Equal("testuserid", userIdClaim.Value);
@@ -24,13 +22,9 @@ namespace $safeprojectname$.UI.Auth
         public async Task GetAuthenticationStateAsync_WhenLoginIsNotValid_ReturnEmptyAuthenticaitonStateObject()
         {
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
-
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(default(AuthenticationResponse));
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(UserVM));
-            accessTokenServiceMock.Setup(x => x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
-
-            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(default($ext_projectname$.UI.Helpers.ApiResponse));
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(Person));
+            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object);
             var response = await obj.GetAuthenticationStateAsync();
             Assert.NotNull(response);
         }
@@ -39,13 +33,11 @@ namespace $safeprojectname$.UI.Auth
         public async Task GetAuthenticationStateAsync_WhenLoginIsValidButUserDetailsNotFound_ReturnEmptyAuthenticaitonStateObject()
         {
             var userServiceHandlerMock = new Mock<IUserServiceHandler>();
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new AuthenticationResponse { Token = "testtoken" });
-            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(UserVM));
-            accessTokenServiceMock.Setup(x => x.SetAccessTokenAsync(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
+            userServiceHandlerMock.Setup(x => x.LoginAsync()).ReturnsAsync(new $ext_projectname$.UI.Helpers.ApiResponse { IsSuccess = true });
+            userServiceHandlerMock.Setup(x => x.GetLoginUserDetailsAsync()).ReturnsAsync(default(Person));
 
-            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object, accessTokenServiceMock.Object);
+            AppAuthenticationStateProvider obj = new AppAuthenticationStateProvider(userServiceHandlerMock.Object);
             var response = await obj.GetAuthenticationStateAsync();
             Assert.NotNull(response);
         }

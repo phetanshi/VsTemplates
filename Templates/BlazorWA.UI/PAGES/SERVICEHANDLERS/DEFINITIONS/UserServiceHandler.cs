@@ -1,38 +1,47 @@
-﻿using $safeprojectname$.Auth.Services;
-using Helpers = $safeprojectname$.Helpers;
+﻿using $safeprojectname$.Auth;
+using $safeprojectname$.Helpers;
 using $safeprojectname$.Pages.ServiceHandlers.Interfaces;
-using $ext_projectname$.ViewModels.Auth;
-using $ext_projectname$.ViewModels.Models;
+using System.Text.Json;
 
 namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
 {
     public class UserServiceHandler : ServiceHandlerBase, IUserServiceHandler
     {
-        private readonly IAccessTokenService accessTokenService;
-
-        public UserServiceHandler(IAccessTokenService accessTokenService, IConfiguration configuration, HttpClient http) : base(configuration, http)
+        public UserServiceHandler(IConfiguration configuration, HttpClient http) : base(configuration, http)
         {
-            this.accessTokenService = accessTokenService;
         }
 
-        public async Task<UserVM> GetLoginUserDetailsAsync()
+        public async Task<Person> GetLoginUserDetailsAsync()
         {
-            bool isExpired = await IsTokenExpiredAsync();
+            bool isTokenExpired = await IsTokenExpiredAsync();
 
-            if (isExpired)
-                return null;
+            if(!isTokenExpired)
+            {
+                var apiResponse = await Post<ApiResponse>(UriHelper.LoginUserDetails);
 
-            return await Post<UserVM>(Helpers.UriHelper.LoginUserDetails);
+                if (!apiResponse.IsSuccess)
+                    return null;
+
+                Person loginUser = ((JsonElement)(apiResponse.Payload)).ToObject<Person>();
+                return loginUser;
+            }
+            return null;
         }
 
         public async Task<bool> IsTokenExpiredAsync()
         {
-            return await Post<bool>(Helpers.UriHelper.IsTokenExpired);
+            var apiResponse = await Post<ApiResponse>(UriHelper.IsTokenExpired);
+
+            if (!apiResponse.IsSuccess)
+                return false;
+
+            bool isTokenExpired = ((JsonElement)(apiResponse.Payload)).GetBoolean();
+            return isTokenExpired;
         }
 
-        public async Task<AuthenticationResponse> LoginAsync()
+        public async Task<ApiResponse> LoginAsync()
         {
-            return await Post<AuthenticationResponse>(Helpers.UriHelper.Login);
+            return await Post<ApiResponse>(UriHelper.Login);
         }
     }
 }

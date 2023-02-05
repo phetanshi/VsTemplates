@@ -5,7 +5,7 @@
         [Fact]
         public void MainLayout_WhenCalled()
         {
-            
+
         }
     }
 }

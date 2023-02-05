@@ -14,7 +14,6 @@ namespace $safeprojectname$
     {
         private readonly string name;
         private readonly Func<DbLoggerConfiguration> getCurrentConfig;
-        private readonly IServiceProvider serviceProvider;
         private readonly AppLoggingDbContext loggerDbContext;
 
         public DbLogger(string name, IConfiguration configuration, Func<DbLoggerConfiguration> getCurrentConfig)
@@ -55,10 +54,7 @@ namespace $safeprojectname$
                         break;
                 }
             }
-            finally
-            {
-
-            }
+            catch { }
         }
 
         private void LogMessage(string message, LogLevel logLevel)
@@ -75,27 +71,7 @@ namespace $safeprojectname$
                 loggerDbContext.ActivityLogs.Add(activityLog);
                 loggerDbContext.SaveChanges();
             }
-            finally
-            {
-            }
-        }
-        private void LogCritical(string message, Exception? exception = null)
-        {
-            try
-            {
-                ActivityLog activityLog = new ActivityLog();
-                activityLog.Message = message;
-                activityLog.LogLevelId = (int)LogLevel.Critical;
-                activityLog.UrlOrModule = "-";
-                activityLog.LogDateTime = DateTime.Now;
-                activityLog.UserId = "CORP\\e999999";
-
-                loggerDbContext.ActivityLogs.Add(activityLog);
-                loggerDbContext.SaveChanges();
-            }
-            finally
-            {
-            }
+            catch { }
         }
 
         private void LogError(string message, Exception? exception)
@@ -111,11 +87,10 @@ namespace $safeprojectname$
                 if(exception != null)
                 {
                     errorLog.ClassName = exception.TargetSite?.DeclaringType?.FullName;
-                    errorLog.MethodName = "";
+                    errorLog.MethodName = exception.TargetSite?.DeclaringType?.Name;
                     errorLog.StackTrace = exception.StackTrace ?? "-";
                     errorLog.ErrorType = exception.GetType()?.FullName ?? "-"; 
                 }
-
 
                 loggerDbContext.ErrorLogs.Add(errorLog);
                 loggerDbContext.SaveChanges();
@@ -123,9 +98,7 @@ namespace $safeprojectname$
                 if (exception?.InnerException != null)
                     LogError(exception.InnerException.Message, exception.InnerException);
             }
-            finally
-            {
-            }
+            catch { }
         }
     }
 }

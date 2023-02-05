@@ -1,10 +1,9 @@
-﻿using $ext_projectname$.Domain;
-using $ext_projectname$.ViewModels.Models;
+﻿using $safeprojectname$.Auth;
 
 namespace $safeprojectname$.Services.Interfaces
 {
     public interface ISampleService
     {
-        Task<List<UserVM>> GetUsers();
+        Task<List<IdentityVM>> GetUsers();
     }
 }

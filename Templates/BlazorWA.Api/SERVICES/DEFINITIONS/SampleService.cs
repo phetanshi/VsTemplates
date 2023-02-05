@@ -1,27 +1,21 @@
 ﻿using AutoMapper;
+using $safeprojectname$.Auth;
 using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data.Interfaces;
-using $ext_projectname$.ViewModels.Models;
+using $ext_projectname$.Data;
+using $ext_projectname$.Data.DbModels;
 
 namespace $safeprojectname$.Services.Definitions
 {
-    public class SampleService : ISampleService
+    public class SampleService : ServiceBase, ISampleService
     {
-        private readonly ISampleRepository sampleRepository;
-        private readonly IMapper mapper;
-        private readonly ILogger<SampleService> logger;
-
-        public SampleService(ISampleRepository sampleRepository, IMapper mapper, ILogger<SampleService> logger)
+        public SampleService(IRepository repository, ILogger<SampleService> logger, IConfiguration config, IMapper mapper) : base(repository, logger, config, mapper)
         {
-            this.sampleRepository = sampleRepository;
-            this.mapper = mapper;
-            this.logger = logger;
         }
-        public async Task<List<UserVM>> GetUsers()
+        public async Task<List<IdentityVM>> GetUsers()
         {
-            List<UserVM> users = new List<UserVM>();
-            var empList =  await sampleRepository.GetEmployeesAsync();
-            mapper.Map(empList, users);
+            List<IdentityVM> users = new List<IdentityVM>();
+            var empList =  await Repository.GetAllAsync<Employee>();
+            Mapper.Map(empList, users);
             return users;
         }
     }

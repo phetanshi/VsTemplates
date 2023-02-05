@@ -13,12 +13,6 @@
 
             return configuration;
         }
-        public static Mock<IAccessTokenService> GetIAccessTokenServiceMockObject()
-        {
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
-            accessTokenServiceMock.Setup(x => x.GetAccessTokenAsync(It.IsAny<string>())).ReturnsAsync("testtoken");
-            return accessTokenServiceMock;
-        }
 
         public static HttpClient GetTestHttpClient()
         {
@@ -26,12 +20,12 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            List<UserVM> users = new List<UserVM>
+            List<IdentityVM> users = new List<IdentityVM>
             {
-                new UserVM { UserId="testuserid" }
+                new IdentityVM { UserId="testuserid" }
             };
 
-            UserVM userVM = new UserVM
+            IdentityVM userVM = new IdentityVM
             {
                 FirstName = "test post response"
             };

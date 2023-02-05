@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>BlazorWA.Server-297DDEA6-F093-409A-9DF6-F410EFAF3ABC</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>0</WebProject_DirectoryAccessLevelKey>
   </PropertyGroup>
 
@@ -24,10 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\$ext_projectname$.Data\$ext_projectname$.Data.csproj" />
-    <ProjectReference Include="..\$ext_projectname$.Domain\$ext_projectname$.Domain.csproj" />
     <ProjectReference Include="..\$ext_projectname$.Logging\$ext_projectname$.Logging.csproj" />
     <ProjectReference Include="..\$ext_projectname$.UI\$ext_projectname$.UI.csproj" />
-    <ProjectReference Include="..\$ext_projectname$.ViewModels\$ext_projectname$.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>

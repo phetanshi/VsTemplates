@@ -1,11 +1,7 @@
 ﻿using $safeprojectname$.Helpers;
-using $ext_projectname$.ViewModels.Models;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
 {
@@ -19,6 +15,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
             this.configuration = configuration;
             this.http = http;
         }
+
         protected string GetServiceUri(string uriKey)
         {
             var uri = configuration[uriKey];
@@ -48,8 +45,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         {
             if (httpResponse.IsSuccessStatusCode && httpResponse.Content != null)
             {
-                T Obj = await httpResponse.Content.ReadFromJsonAsync<T>();
-                return Obj;
+                return await httpResponse.Content.ReadFromJsonAsync<T>();
             }
             return default(T);
         }
@@ -78,7 +74,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostAndGetString<TInput>(TInput vm, string uriConfigKey)
         {
             if (vm == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
+                throw new ArgumentNullException(ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -89,7 +85,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
+                throw new ArgumentNullException(ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -100,7 +96,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         protected async Task<string> PostFile(MultipartFormDataContent fileContent, string uriConfigKey, Dictionary<string, string> queryStringsToBeApended)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
+                throw new ArgumentNullException(ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey, queryStringsToBeApended);
 
@@ -111,7 +107,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         protected async Task<TReturn> PostFile<TReturn>(MultipartFormDataContent fileContent, string uriConfigKey)
         {
             if (fileContent == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
+                throw new ArgumentNullException(ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 
@@ -122,7 +118,7 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         protected async Task<TResult> Post<TInput, TResult>(TInput vm, string uriConfigKey)
         {
             if (vm == null)
-                throw new ArgumentNullException(AppConstants.ErrorMessages.VIEW_MODEL_IS_NULL);
+                throw new ArgumentNullException(ErrorMessages.VIEW_MODEL_IS_NULL);
 
             var uri = GetServiceUri(uriConfigKey);
 

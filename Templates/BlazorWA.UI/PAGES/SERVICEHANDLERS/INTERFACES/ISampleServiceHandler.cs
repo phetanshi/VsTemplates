@@ -1,9 +1,9 @@
-﻿using $ext_projectname$.ViewModels.Models;
+﻿using $safeprojectname$.Auth;
 
 namespace $safeprojectname$.Pages.ServiceHandlers.Interfaces
 {
     public interface ISampleServiceHandler
     {
-        Task<List<UserVM>> GetUsersAsync();
+        Task<List<Person>> GetUsersAsync();
     }
 }

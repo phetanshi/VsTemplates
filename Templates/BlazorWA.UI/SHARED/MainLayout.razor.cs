@@ -1,6 +1,6 @@
-﻿using $ext_projectname$.ViewModels.Auth;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using $safeprojectname$.Auth;
 using System.Security.Claims;
 
 namespace $safeprojectname$.Shared
@@ -14,7 +14,7 @@ namespace $safeprojectname$.Shared
         protected override async Task OnInitializedAsync()
         {
             var authNState = await AuthenticationState;
-            if(authNState.User.Identity.IsAuthenticated)
+            if (authNState.User.Identity.IsAuthenticated)
             {
                 var firstNameClaim = authNState.User.FindFirst(x => x.Type == AppClaimTypes.FirstName);
                 var lastNameClaim = authNState.User.FindFirst(x => x.Type == AppClaimTypes.LastName);

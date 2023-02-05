@@ -6,7 +6,7 @@
         public void AppHeader_WhenRenderedWithOutAuthentication_DisplaysTextAsNotAuthenticated()
         {
             var ctx = new TestContext();
-            var cut = ctx.RenderComponent<AppHeader>(parm=>parm.Add(p=>p.IsAuthenticated, false));
+            var cut = ctx.RenderComponent<AppHeader>(parm => parm.Add(p => p.IsAuthenticated, false));
 
             var text = cut.Find("div > span.text-primary").TextContent;
 
@@ -18,7 +18,7 @@
         {
             var ctx = new TestContext();
             var cut = ctx.RenderComponent<AppHeader>(parm => parm.Add(p => p.IsAuthenticated, true)
-                                                                    .Add(p=>p.UserName, "Test User"));
+                                                                    .Add(p => p.UserName, "Test User"));
 
             var text = cut.Find("div > span.text-primary").TextContent;
 

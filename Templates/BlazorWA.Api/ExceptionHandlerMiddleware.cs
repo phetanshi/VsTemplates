@@ -1,4 +1,7 @@
-﻿using $ext_projectname$.Logging;
+﻿using $safeprojectname$.Util;
+using $ext_projectname$.Data.AppExceptions;
+using $ext_projectname$.Data.Constants;
+using $ext_projectname$.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -33,13 +36,36 @@ namespace $safeprojectname$
             {
                 await next(context);
             }
-            catch(Exception ex)
+            catch (UnauthorizedException ex)
+            {
+                logger.LogError(ex, $"UnauthorizedException . Url: {context.Request.Path}. Request Data: " + GetRequestData(context));
+                var routeData = context.GetRouteData() ?? new RouteData();
+                var actionContext = new ActionContext(context, routeData, EmptyActionDescriptor);
+
+                ApiResponse<object> apiResponse = new ApiResponse<object>();
+                apiResponse.Payload = null;
+                apiResponse.IsSuccess = false;
+                apiResponse.Message = ex.Message;
+
+                var result = new ObjectResult(apiResponse)
+                {
+                    StatusCode = (int)HttpStatusCode.Unauthorized
+                };
+
+                await executor.ExecuteAsync(actionContext, result);
+            }
+            catch (Exception ex)
             {
                 logger.LogError(ex, $"An unhandled exception has occurred while executing the rquest. Url: {context.Request.Path}. Request Data: " + GetRequestData(context));
                 var routeData = context.GetRouteData() ?? new RouteData();
                 var actionContext = new ActionContext(context, routeData, EmptyActionDescriptor);
 
-                var result = new ObjectResult(new ErrorResponse("Error processing request. Server error."))
+                ApiResponse<object> apiResponse = new ApiResponse<object>();
+                apiResponse.Payload = null;
+                apiResponse.IsSuccess = false;
+                apiResponse.Message = ErrorMessages.UNHANDLED_EXCEPTION;
+
+                var result = new ObjectResult(apiResponse)
                 {
                     StatusCode = (int)HttpStatusCode.InternalServerError
                 };
@@ -63,16 +89,5 @@ namespace $safeprojectname$
             return sb.ToString();
         }
 
-        [DataContract(Name = "ErrorResponse")]
-        public class ErrorResponse
-        {
-            [DataMember(Name = "Message")]
-            public string Message { get; set; }
-
-            public ErrorResponse(string message)
-            {
-                Message = message;
-            }   
-        }
     }
 }

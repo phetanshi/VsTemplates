@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.UI.Components</Name>
-    <Description>Blazor component library project with Mudblazor support</Description>
+    <Description>Padmasekhar's Blazor UI Component Project</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -32,7 +32,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="UiTheme.cs">UiTheme.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UiVariant.cs">UiVariant.cs</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="false" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

@@ -1,14 +1,10 @@
-using $safeprojectname$;
-using $safeprojectname$.Auth;
-using $safeprojectname$.Auth.Services;
-using $safeprojectname$.Auth.Services.Definitions;
-using $safeprojectname$.Pages.ServiceHandlers.Definitions;
-using $safeprojectname$.Pages.ServiceHandlers.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using $safeprojectname$.Auth;
 using $safeprojectname$.Components.Services;
+using $safeprojectname$.Pages.ServiceHandlers.Definitions;
+using $safeprojectname$.Pages.ServiceHandlers.Interfaces;
 
 namespace $safeprojectname$
 {
@@ -34,8 +30,6 @@ namespace $safeprojectname$
 
             builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
             builder.Services.AddTransient<AppAutherizationHandler>();
-
-            builder.Services.AddScoped<IAccessTokenService, AppAccessTokenService>();
 
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();

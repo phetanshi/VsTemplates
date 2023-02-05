@@ -1,7 +1,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>BlazorWA.UI</Name>
-    <Description>Blazor Web Assembly Project </Description>
+    <Description>Padmasekhar's Blazor Webassembly UI Project</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
@@ -51,17 +51,17 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="index.html">index.html</ProjectItem>
       </Folder>
       <Folder Name="Auth" TargetFolderName="Auth">
-        <Folder Name="Services" TargetFolderName="Services">
-          <Folder Name="Definitions" TargetFolderName="Definitions">
-            <ProjectItem ReplaceParameters="true" TargetFileName="AppAccessTokenService.cs">AppAccessTokenService.cs</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="IAccessTokenService.cs">IAccessTokenService.cs</ProjectItem>
-        </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="AppAuthenticationStateProvider.cs">AppAuthenticationStateProvider.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="AppAutherizationHandler.cs">AppAutherizationHandler.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppClaimTypes.cs">AppClaimTypes.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Person.cs">Person.cs</ProjectItem>
       </Folder>
       <Folder Name="Helpers" TargetFolderName="Helpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApiResponse.cs">ApiResponse.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppConfig.cs">AppConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="AppConstants.cs">AppConstants.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppExtension.cs">AppExtension.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorMessages.cs">ErrorMessages.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UriHelper.cs">UriHelper.cs</ProjectItem>
       </Folder>
       <Folder Name="Pages" TargetFolderName="Pages">
@@ -83,7 +83,7 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="MainLayout.razor">MainLayout.razor</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MainLayout.razor.cs">MainLayout.razor.cs</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="NavMenu.razor">NavMenu.razor</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="NavMenu.razor.css">NavMenu.razor.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="NavMenu.razor.css">NavMenu.razor.css</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="_Imports.razor">_Imports.razor</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="App.razor">App.razor</ProjectItem>

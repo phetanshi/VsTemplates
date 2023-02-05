@@ -1,4 +1,6 @@
-﻿namespace $safeprojectname$.UI.ServiceHandlers
+﻿using $ext_projectname$.Api.Util;
+
+namespace $safeprojectname$.UI.ServiceHandlers
 {
     public class UserServiceHandlerTests
     {
@@ -16,14 +18,12 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new UserVM { UserId = "testuserid" });
+            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new IdentityVM { UserId = "testuserid" });
             mockHttp.When($"{httpUrl}/user/IsTokenExpired").RespondJson(false);
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");
 
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
-
-            UserServiceHandler userServiceHandler = new UserServiceHandler(accessTokenServiceMock.Object, configuration, clinet);
+            UserServiceHandler userServiceHandler = new UserServiceHandler(configuration, clinet);
 
             var result = await userServiceHandler.GetLoginUserDetailsAsync();
 
@@ -45,14 +45,13 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new UserVM { UserId = "testuserid" });
+            mockHttp.When($"{httpUrl}/user/LoginUserDetails").RespondJson(new IdentityVM { UserId = "testuserid" });
             mockHttp.When($"{httpUrl}/user/IsTokenExpired").RespondJson(true);
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");
 
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            UserServiceHandler userServiceHandler = new UserServiceHandler(accessTokenServiceMock.Object, configuration, clinet);
+            UserServiceHandler userServiceHandler = new UserServiceHandler(configuration, clinet);
 
             var result = await userServiceHandler.GetLoginUserDetailsAsync();
 
@@ -72,19 +71,18 @@
             var mockHttp = ctx.Services.AddMockHttpClient();
             var httpUrl = "https://localhost";
 
-            mockHttp.When($"{httpUrl}/user/Login").RespondJson(new AuthenticationResponse { Token = "testtoken" });
-            
+            mockHttp.When($"{httpUrl}/user/Login").RespondJson(new $ext_projectname$.UI.Helpers.ApiResponse { IsSuccess = true });
+
             var clinet = mockHttp.ToHttpClient();
             clinet.BaseAddress = new Uri(httpUrl + "/");
 
-            var accessTokenServiceMock = new Mock<IAccessTokenService>();
 
-            UserServiceHandler userServiceHandler = new UserServiceHandler(accessTokenServiceMock.Object, configuration, clinet);
+            UserServiceHandler userServiceHandler = new UserServiceHandler(configuration, clinet);
 
             var result = await userServiceHandler.LoginAsync();
 
             Assert.NotNull(result);
-            Assert.Equal("testtoken", result.Token);
+            Assert.True(result.IsSuccess);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Helpers = $safeprojectname$.Helpers;
+﻿using $safeprojectname$.Auth;
+using $safeprojectname$.Helpers;
 using $safeprojectname$.Pages.ServiceHandlers.Interfaces;
-using $ext_projectname$.ViewModels.Models;
+using System.Text.Json;
 
 namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
 {
@@ -10,9 +11,15 @@ namespace $safeprojectname$.Pages.ServiceHandlers.Definitions
         {
         }
 
-        public async Task<List<UserVM>> GetUsersAsync()
+        public async Task<List<Person>> GetUsersAsync()
         {
-            return await Get<List<UserVM>>(Helpers.UriHelper.SampleUsers);
+            List<Person> persons = new List<Person>();
+            var apiResponse = await Get<ApiResponse>(Helpers.UriHelper.SampleUsers);
+            if(apiResponse.IsSuccess)
+            {
+                persons = ((JsonElement)(apiResponse.Payload)).ToObject<List<Person>>();
+            }
+            return persons;
         }
     }
 }
