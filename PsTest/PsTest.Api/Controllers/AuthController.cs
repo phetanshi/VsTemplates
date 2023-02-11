@@ -5,11 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PsTest.Api.Auth;
 using PsTest.Api.Services.Interfaces;
-using PsTest.Data;
 using PsTest.Data.AppExceptions;
 using PsTest.Data.Constants;
-using PsTest.UI.Auth;
-using System.Text.Json.Nodes;
 
 namespace PsTest.Api.Controllers
 {

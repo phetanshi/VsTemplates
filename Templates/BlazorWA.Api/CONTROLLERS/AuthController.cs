@@ -1,9 +1,8 @@
 ﻿using $safeprojectname$.Auth;
 using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data;
 using $ext_projectname$.Data.AppExceptions;
 using $ext_projectname$.Data.Constants;
-using $ext_projectname$.UI.Auth;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Negotiate;

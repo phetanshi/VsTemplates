@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PsTest.Api.Auth;
 using PsTest.Api.Services.Interfaces;
-using PsTest.Data;
-using PsTest.Data.Constants;
 
 namespace PsTest.Api.Controllers
 {

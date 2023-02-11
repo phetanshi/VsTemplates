@@ -1,6 +1,5 @@
 ﻿using $safeprojectname$.Util;
 using $ext_projectname$.Data.Constants;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace $safeprojectname$.Controllers

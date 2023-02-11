@@ -1,9 +1,6 @@
 ﻿using $safeprojectname$.Auth;
 using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data;
-using $ext_projectname$.Data.Constants;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace $safeprojectname$.Controllers
