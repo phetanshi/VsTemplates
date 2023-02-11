@@ -1,12 +1,8 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.Negotiate;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ps.WebApiTemplate.Api.Auth;
 using Ps.WebApiTemplate.Api.Services.Interfaces;
-using Ps.WebApiTemplate.Data;
 using Ps.WebApiTemplate.Data.AppExceptions;
 using Ps.WebApiTemplate.Data.Constants;
 
@@ -25,7 +21,7 @@ namespace Ps.WebApiTemplate.Api.Controllers
 
         [HttpPost]
         [Route("login")]
-        [Authorize(AuthenticationSchemes = NegotiateDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.Windows)]
         public async Task<IActionResult> Login()
         {
             await _userService.Login(HttpContext);
@@ -34,7 +30,7 @@ namespace Ps.WebApiTemplate.Api.Controllers
 
         [HttpPost]
         [Route("istokenexpired")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.AppPolicyName)]
         public async Task<IActionResult> IsTokenExpired()
         {
             bool isTokenExpired = true;
@@ -49,7 +45,7 @@ namespace Ps.WebApiTemplate.Api.Controllers
 
         [HttpPost]
         [Route("getuserbyjwt")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.AppPolicyName)]
         public async Task<IActionResult> GetUserByToken()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -67,14 +63,6 @@ namespace Ps.WebApiTemplate.Api.Controllers
         {
             await HttpContext.SignOutAsync();
             return OkWrapper();
-        }
-
-        [HttpGet]
-        [Route("pingauthz")]
-        [Authorize(Policy = "AppPolicyName")]
-        public async Task<IActionResult> TestAuth()
-        {
-            return Ok("Autherization Success");
         }
     }
 }

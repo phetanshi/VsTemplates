@@ -34,6 +34,9 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="AppSpecificRequirement.cs">AppSpecificRequirement.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationResponse.cs">AuthenticationResponse.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="IdentityVM.cs">IdentityVM.cs</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="PolicyNames.cs">PolicyNames.cs</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="WindowsAuthNHandler.cs">WindowsAuthNHandler.cs</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="WindowsAuthNRequirement.cs">WindowsAuthNRequirement.cs</ProjectItem>
       </Folder>
       <Folder Name="AutoMapperProfiles" TargetFolderName="AutoMapperProfiles">
         <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeAutoMapperProfile.cs">EmployeeAutoMapperProfile.cs</ProjectItem>

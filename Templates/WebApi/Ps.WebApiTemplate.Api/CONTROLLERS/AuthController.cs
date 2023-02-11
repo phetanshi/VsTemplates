@@ -1,12 +1,9 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.Negotiate;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using $safeprojectname$.Auth;
 using $safeprojectname$.Services.Interfaces;
-using $ext_projectname$.Data;
 using $ext_projectname$.Data.AppExceptions;
 using $ext_projectname$.Data.Constants;
 
@@ -25,7 +22,7 @@ namespace $safeprojectname$.Controllers
 
         [HttpPost]
         [Route("login")]
-        [Authorize(AuthenticationSchemes = NegotiateDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.Windows)]
         public async Task<IActionResult> Login()
         {
             await _userService.Login(HttpContext);
@@ -34,7 +31,7 @@ namespace $safeprojectname$.Controllers
 
         [HttpPost]
         [Route("istokenexpired")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.AppPolicyName)]
         public async Task<IActionResult> IsTokenExpired()
         {
             bool isTokenExpired = true;
@@ -49,7 +46,7 @@ namespace $safeprojectname$.Controllers
 
         [HttpPost]
         [Route("getuserbyjwt")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Policy = PolicyNames.AppPolicyName)]
         public async Task<IActionResult> GetUserByToken()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -65,7 +62,8 @@ namespace $safeprojectname$.Controllers
         [Route("logout")]
         public async Task<ActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            HttpContext.Response.Cookies.Delete("access_token");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return OkWrapper();
         }
     }

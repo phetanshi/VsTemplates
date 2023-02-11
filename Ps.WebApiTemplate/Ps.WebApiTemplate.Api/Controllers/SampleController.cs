@@ -7,6 +7,7 @@ namespace Ps.WebApiTemplate.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = PolicyNames.AppPolicyName)]
     public class SampleController : AppBaseController
     {
         private readonly ISampleService _sampleService;
@@ -18,7 +19,6 @@ namespace Ps.WebApiTemplate.Api.Controllers
 
         [HttpGet]
         [Route("users")]
-        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             List<IdentityVM> data = await _sampleService.GetUsers();

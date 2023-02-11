@@ -18,7 +18,11 @@ namespace $safeprojectname$.Auth
             var userId = context.User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
 
             if(userId == null)
+            {
                 context.Fail();
+                return Task.CompletedTask;
+            }
+                
 
             var emp = Repository.GetById<Employee>(x => x.UserId.ToLower() == userId.Value.ToLower());
 

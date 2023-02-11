@@ -24,6 +24,7 @@ namespace $safeprojectname$.AppStart
             services.AddScoped<ISampleService, SampleService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthorizationHandler, AppSpecificHandler>();
+            services.AddScoped<IAuthorizationHandler, WindowsAuthNHandler>();
         }
         private static void AddRepository(this IServiceCollection services)
         {
