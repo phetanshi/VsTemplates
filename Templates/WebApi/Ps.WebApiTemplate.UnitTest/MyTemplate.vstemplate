@@ -1,0 +1,38 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Ps.WebApiTemplate.UnitTest</Name>
+    <Description>Ps .NEt 6 Web API unit test project</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Ps.WebApiTemplate.UnitTest</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.UnitTest.csproj" File="Ps.WebApiTemplate.UnitTest.csproj" ReplaceParameters="true">
+      <Folder Name="Api" TargetFolderName="Api">
+        <Folder Name="Services" TargetFolderName="Services">
+          <ProjectItem ReplaceParameters="true" TargetFileName="SampleServiceTests.cs">SampleServiceTests.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Data" TargetFolderName="Data">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_GetAll_Tests.cs">AppRepository_GetAll_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_GetById_Tests.cs">AppRepository_GetById_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_Insert_Tests.cs">AppRepository_Insert_Tests.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository_Update_Tests.cs">AppRepository_Update_Tests.cs</ProjectItem>
+      </Folder>
+      <Folder Name="TestHelpers" TargetFolderName="TestHelpers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DBDataSets.cs">DBDataSets.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestDatabaseHelper.cs">TestDatabaseHelper.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestDbContext.cs">TestDbContext.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Usings.cs">Usings.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

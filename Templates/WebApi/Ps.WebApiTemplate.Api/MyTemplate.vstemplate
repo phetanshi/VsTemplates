@@ -1,0 +1,70 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Ps WebApiTemplate</Name>
+    <Description>.NET 6 Web API template with custom autherization mechanism</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Ps.WebApiTemplate.Api</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.Api.csproj" File="Ps.WebApiTemplate.Api.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
+      </Folder>
+      <Folder Name="AppStart" TargetFolderName="AppStart">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppMiddleware.cs">AppMiddleware.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppServices.cs">AppServices.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationConfig.cs">AuthenticationConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthorizationConfig.cs">AuthorizationConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DatabaseConfig.cs">DatabaseConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MiscAppServices.cs">MiscAppServices.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ObjectContainer.cs">ObjectContainer.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Auth" TargetFolderName="Auth">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppClaimTypes.cs">AppClaimTypes.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppSpecificHandler.cs">AppSpecificHandler.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppSpecificRequirement.cs">AppSpecificRequirement.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationResponse.cs">AuthenticationResponse.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IdentityVM.cs">IdentityVM.cs</ProjectItem>
+      </Folder>
+      <Folder Name="AutoMapperProfiles" TargetFolderName="AutoMapperProfiles">
+        <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeAutoMapperProfile.cs">EmployeeAutoMapperProfile.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppBaseController.cs">AppBaseController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AuthController.cs">AuthController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SampleController.cs">SampleController.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Pages" TargetFolderName="Pages">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml.cs">Error.cshtml.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Services" TargetFolderName="Services">
+        <Folder Name="Definitions" TargetFolderName="Definitions">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AuthService.cs">AuthService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SampleService.cs">SampleService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ServiceBase.cs">ServiceBase.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Interfaces" TargetFolderName="Interfaces">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IAuthService.cs">IAuthService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ISampleService.cs">ISampleService.cs</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Util" TargetFolderName="Util">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApiResponse.cs">ApiResponse.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Development.json">appsettings.Development.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ExceptionHandlerMiddleware.cs">ExceptionHandlerMiddleware.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

@@ -1,0 +1,45 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>BlazorWA.Data</Name>
+    <Description>Padmasekhar's .NET 6 Repository Project</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>BlazorWA.Data</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.Data.csproj" File="BlazorWA.Data.csproj" ReplaceParameters="true">
+      <Folder Name="AppExceptions" TargetFolderName="AppExceptions">
+        <ProjectItem ReplaceParameters="true" TargetFileName="UnauthorizedException.cs">UnauthorizedException.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Constants" TargetFolderName="Constants">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppConstants.cs">AppConstants.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ConfigConstants.cs">ConfigConstants.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorMessages.cs">ErrorMessages.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Database" TargetFolderName="Database">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppDbContext.cs">AppDbContext.cs</ProjectItem>
+      </Folder>
+      <Folder Name="DbModels" TargetFolderName="DbModels">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Employee.cs">Employee.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Student.cs">Student.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="StudentSubjectMapping.cs">StudentSubjectMapping.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Subject.cs">Subject.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Definitions" TargetFolderName="Definitions">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppRepository.cs">AppRepository.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Dtos" TargetFolderName="Dtos">
+        <ProjectItem ReplaceParameters="true" TargetFileName="SampleDTO.cs">SampleDTO.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="IRepository.cs">IRepository.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
