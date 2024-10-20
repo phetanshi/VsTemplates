@@ -1,0 +1,6 @@
+@Ps.CleanWebApi.Endpoints_HostAddress = http://localhost:5177
+
+GET {{Ps.CleanWebApi.Endpoints_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
